@@ -10,5 +10,9 @@ public interface IdSet<T> {
 
   IdSet<T> and(IdSet<T> other);
 
+  IdSet<T> andNot(IdSet<T> other);
+
   IdSet<T> or(IdSet<T> other);
+
+  IdIterator iterator();
 }

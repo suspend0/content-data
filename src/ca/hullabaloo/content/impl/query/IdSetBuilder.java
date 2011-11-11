@@ -2,6 +2,7 @@ package ca.hullabaloo.content.impl.query;
 
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.impl.ArrayIdSet;
+import com.google.common.primitives.Ints;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,12 +23,8 @@ public class IdSetBuilder<T> {
   }
 
   public IdSet<T> build() {
-    int[] values = new int[delegate.size()];
-    int pos = 0;
-    for(int i : delegate) {
-      values[pos++] = i;
-    }
+    int[] values = Ints.toArray(delegate);
     Arrays.sort(values);
-    return ArrayIdSet.fromSorted(values);
+    return ArrayIdSet.ofSorted(values);
   }
 }

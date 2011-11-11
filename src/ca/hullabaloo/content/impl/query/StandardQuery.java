@@ -2,7 +2,6 @@ package ca.hullabaloo.content.impl.query;
 
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.Query;
-import ca.hullabaloo.content.api.StorageSpi;
 import ca.hullabaloo.content.impl.storage.Values;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -21,8 +20,8 @@ public class StandardQuery<T> implements Query<T> {
   private final Map<String, Predicate<Object>> fieldValues = Maps.newHashMap();
   private String fieldName;
 
-  public StandardQuery(StorageSpi storage, Class<T> type) {
-    this.data = new DataGatherer(storage);
+  public StandardQuery(DataGatherer data, Class<T> type) {
+    this.data = data;
     this.type = type;
     this.fields = proxy(type);
   }

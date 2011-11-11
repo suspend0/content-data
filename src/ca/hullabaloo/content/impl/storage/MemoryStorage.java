@@ -6,9 +6,15 @@ import com.google.common.collect.Interner;
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.google.inject.internal.Preconditions.checkState;
 
 public class MemoryStorage extends BaseStorage {
-  private Queue<byte[]> data = new ConcurrentLinkedQueue<byte[]>();
+  private volatile int maxReads = Integer.MAX_VALUE;
+  private final AtomicInteger reads = new AtomicInteger(0);
+
+  private final Queue<byte[]> data = new ConcurrentLinkedQueue<byte[]>();
   private final StorageTypes types = new StorageTypes();
   private final StorageSpi spi = new StorageSpi() {
     @Override
@@ -18,6 +24,7 @@ public class MemoryStorage extends BaseStorage {
 
     @Override
     public Iterator<byte[]> data() {
+      checkState(reads.getAndIncrement() < maxReads, "only allowed to read %s times", maxReads);
       return data.iterator();
     }
 
@@ -26,6 +33,11 @@ public class MemoryStorage extends BaseStorage {
       MemoryStorage.this.data.add(bytes);
     }
   };
+
+  public MemoryStorage maxReads(int max) {
+    this.maxReads = max;
+    return this;
+  }
 
   @Override
   protected StorageSpi spi() {
