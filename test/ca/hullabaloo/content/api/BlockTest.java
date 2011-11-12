@@ -41,7 +41,7 @@ public class BlockTest {
     Iterator<byte[]> data = simpleData();
     Block.Reader r = Block.reader(data);
     int count = 0;
-    while (r.advanceTo(10)) {
+    while (r.advanceTo(new int[]{10})) {
       count++;
     }
 
@@ -56,7 +56,7 @@ public class BlockTest {
 
     Iterator<byte[]> data = simpleData();
     Block.Reader r = Block.reader(data);
-    int count = r.read(10, sink);
+    int count = r.read(new int[]{10}, sink);
 
     Assert.assertEquals(count, 2);
 

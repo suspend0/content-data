@@ -1,6 +1,7 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.Storage;
+import com.google.common.collect.ImmutableList;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -17,6 +18,8 @@ public class Values {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String name = method.getName();
+        if(ignore.contains(name))
+          return method.invoke(this);
         return values.get(name);
       }
     };
@@ -30,14 +33,17 @@ public class Values {
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String name = method.getName();
         checkArgument(!Storage.ID_METHOD_NAME.equals(name));
-        cb.called(name);
+        if (!ignore.contains(name)) {
+          cb.called(name);
+        }
         return null;
       }
     });
-
   }
 
   public interface MethodCallback {
     void called(String methodName);
   }
+
+  private static final ImmutableList<String> ignore = ImmutableList.of("toString", "hashCode");
 }

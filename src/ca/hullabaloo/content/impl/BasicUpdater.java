@@ -1,5 +1,6 @@
 package ca.hullabaloo.content.impl;
 
+import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.api.Updater;
 import ca.hullabaloo.content.api.WorkUnit;
 import ca.hullabaloo.content.impl.storage.Values;

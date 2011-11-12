@@ -6,9 +6,11 @@ import ca.hullabaloo.content.impl.storage.Values;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.base.Supplier;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import static com.google.common.base.Preconditions.*;
@@ -17,7 +19,7 @@ public class StandardQuery<T> implements Query<T> {
   private final DataGatherer data;
   private final Class<T> type;
   private final T fields;
-  private final Map<String, Predicate<Object>> fieldValues = Maps.newHashMap();
+  private final Map<String, Predicate<?>> fieldValues = Maps.newHashMap();
   private String fieldName;
 
   public StandardQuery(DataGatherer data, Class<T> type) {
@@ -32,13 +34,23 @@ public class StandardQuery<T> implements Query<T> {
   }
 
   @Override
-  public <V> Query<T> withEquals(V fieldNameCall, V value) {
+  public <V> Query<T> withEquals(V fieldNameCall, V value, V... orValues) {
     checkArgument(fieldNameCall == null);
     checkState(this.fieldName != null);
     String fieldName = this.fieldName;
     this.fieldName = null;
 
-    return withEqualsX(fieldName, value);
+    if (orValues.length == 0) {
+      return withEqualsX(fieldName, value);
+    } else {
+      List<Predicate<V>> predicates = Lists.newArrayList();
+      for (V v : Lists.asList(value, orValues)) {
+        predicates.add(Predicates.equalTo(v));
+      }
+
+      this.fieldValues.put(fieldName, Predicates.or(predicates));
+      return this;
+    }
   }
 
   @Override

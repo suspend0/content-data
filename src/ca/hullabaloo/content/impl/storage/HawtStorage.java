@@ -97,5 +97,10 @@ public class HawtStorage extends BaseStorage {
         throw new RuntimeIOException(e);
       }
     }
+
+    @Override
+    public int[] ids(Class<?> type) {
+      return types.ids(type);
+    }
   }
 }

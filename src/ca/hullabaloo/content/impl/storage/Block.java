@@ -3,6 +3,7 @@ package ca.hullabaloo.content.impl.storage;
 import ca.hullabaloo.content.RuntimeIOException;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
+import com.google.common.primitives.Ints;
 
 import java.io.DataOutput;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class Block {
       readyState();
     }
 
-    public int read(int type, Sink sink) {
+    public int read(int[] type, Sink sink) {
       int count = 0;
       boolean more = true;
       while (more && advanceTo(type)) {
@@ -64,12 +65,12 @@ public class Block {
       return count;
     }
 
-    public boolean advanceTo(int type) {
+    public boolean advanceTo(int[] type) {
       while (true) {
         switch (state) {
           case READY:
             int t = chunk.readInt();
-            if (t == type) {
+            if (Ints.contains(type,t)) {
               state = State.SET;
               return true;
             }

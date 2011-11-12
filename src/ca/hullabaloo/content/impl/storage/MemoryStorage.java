@@ -32,6 +32,11 @@ public class MemoryStorage extends BaseStorage {
     public void append(byte[] bytes) {
       MemoryStorage.this.data.add(bytes);
     }
+
+    @Override
+    public int[] ids(Class<?> type) {
+      return types.ids(type);
+    }
   };
 
   public MemoryStorage maxReads(int max) {

@@ -25,7 +25,7 @@ public class ByIdLoader<T> implements Loader<T> {
     final Table<Integer, String, Object> values = HashBasedTable.create();
     final Interner<String> fieldNames = storage.properties(type);
     Block.Reader reader = Block.reader(this.storage.data());
-    reader.read(Storage.ID.apply(type), new Block.Sink() {
+    reader.read(storage.ids(type), new Block.Sink() {
       @Override
       public boolean accept(int id, String name, String value) {
         if (Arrays.binarySearch(ids, id) >= 0 && null != (name = fieldNames.intern(name))) {

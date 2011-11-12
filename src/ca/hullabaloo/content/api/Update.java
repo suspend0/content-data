@@ -1,4 +1,4 @@
-package ca.hullabaloo.content.impl;
+package ca.hullabaloo.content.api;
 
 public class Update {
   public final Class<?> type;

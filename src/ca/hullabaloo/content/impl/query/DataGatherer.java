@@ -1,10 +1,9 @@
 package ca.hullabaloo.content.impl.query;
 
 import ca.hullabaloo.content.api.IdSet;
-import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.StorageSpi;
+import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.impl.ArrayIdSet;
-import ca.hullabaloo.content.impl.Update;
 import ca.hullabaloo.content.impl.storage.Block;
 import ca.hullabaloo.content.util.Latch;
 import com.google.common.base.Predicate;
@@ -75,15 +74,15 @@ public class DataGatherer {
 
    */
 
-  public <T> Map<String, Supplier<IdSet<T>>> getAll(final Class<T> type, Map<String, Predicate<Object>> fieldValues) {
+  public <T> Map<String, Supplier<IdSet<T>>> getAll(Class<T> type, Map<String, Predicate<?>> fieldValues) {
     final ImmutableMap.Builder<String, Supplier<IdSet<T>>> result = ImmutableMap.builder();
     final ImmutableMap<String, Index<T>> newIndexes;
     {
       final Interner<String> fieldNames = storage.properties(type);
       ImmutableMap.Builder<String, Index<T>> m = ImmutableMap.builder();
-      for (Map.Entry<String, Predicate<Object>> entry : fieldValues.entrySet()) {
+      for (Map.Entry<String, Predicate<?>> entry : fieldValues.entrySet()) {
         String field = fieldNames.intern(entry.getKey());
-        Predicate<Object> predicate = entry.getValue();
+        Predicate<?> predicate = entry.getValue();
         Index<T> index = new Index<T>(type, field, predicate);
         Index<T> existing = indexes.putIfAbsent(index);
         if (existing == null) {
@@ -98,7 +97,7 @@ public class DataGatherer {
 
     if (!newIndexes.isEmpty()) {
       Block.Reader reader = Block.reader(this.storage.data());
-      reader.read(Storage.ID.apply(type), new Block.Sink() {
+      reader.read(storage.ids(type), new Block.Sink() {
         @Override
         public boolean accept(int id, String name, String value) {
           Index<T> seeking;
@@ -121,12 +120,12 @@ public class DataGatherer {
   private static final class Index<T> implements Supplier<IdSet<T>> {
     private final Class<T> type;
     private final String fieldName;
-    private final Predicate<Object> predicate;
+    private final Predicate predicate;
     private final ConcurrentLinkedQueue<Integer> edits = new ConcurrentLinkedQueue<Integer>();
     private volatile IdSet<T> ids;
     private final Latch ready = new Latch();
 
-    public Index(Class<T> type, String fieldName, Predicate<Object> predicate) {
+    public Index(Class<T> type, String fieldName, Predicate<?> predicate) {
       this.type = checkNotNull(type);
       this.fieldName = checkNotNull(fieldName);
       this.predicate = checkNotNull(predicate);

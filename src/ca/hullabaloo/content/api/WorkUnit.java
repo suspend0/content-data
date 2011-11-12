@@ -1,7 +1,6 @@
 package ca.hullabaloo.content.api;
 
 import ca.hullabaloo.content.impl.BasicUpdater;
-import ca.hullabaloo.content.impl.Update;
 import ca.hullabaloo.content.impl.storage.Block;
 import com.google.common.eventbus.EventBus;
 import com.google.common.io.ByteArrayDataOutput;
@@ -21,6 +20,7 @@ public class WorkUnit {
   }
 
   public <T> Updater<T> updater(Class<T> type) {
+    storage.ids(type);
     return new BasicUpdater<T>(this, type);
   }
 
