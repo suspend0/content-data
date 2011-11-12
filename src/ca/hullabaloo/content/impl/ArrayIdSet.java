@@ -16,6 +16,7 @@ public class ArrayIdSet<T> implements IdSet<T> {
   public static <T> IdSet<T> of(int... values) {
     values = values.clone();
     Arrays.sort(values);
+    
     return ofSorted(values);
   }
 
