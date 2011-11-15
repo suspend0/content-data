@@ -5,7 +5,7 @@ public interface Query<T> {
 
   public <V> Query<T> withEquals(V fieldNameCall, V value, V... orValues);
 
-  public Query<T> withEqualsX(String fieldName, Object value);
+  public Query<T> withFieldEquals(String fieldName, Object value, Object... orValues);
 
   public IdSet<T> execute();
 }

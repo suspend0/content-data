@@ -145,10 +145,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseStorage.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BaseStorage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="34" selection-start="603" selection-end="603" vertical-scroll-proportion="0.20624152">
+            <state line="18" column="45" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Query.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StandardQuery.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="17" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.45606694">
               <folding />
             </state>
           </provider>
@@ -186,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/DataGatherer.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/api/WorkUnit.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/StorageTypes.java" />
@@ -202,6 +218,8 @@
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/QuickSelection.java" />
         <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/SelectionTest.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java" />
       </list>
     </option>
   </component>
@@ -934,12 +952,12 @@
       <method />
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.StorageTypesTest.testRegister" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Selection" />
-      <item index="2" class="java.lang.String" itemvalue="TestNG.SelectionTest" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.SelectionTest.largeList" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.SelectionTest.debug" />
-      <item index="5" class="java.lang.String" itemvalue="TestNG.Tests" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.Tests" />
+      <item index="1" class="java.lang.String" itemvalue="TestNG.StorageTypesTest.testRegister" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Selection" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.SelectionTest" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.SelectionTest.largeList" />
+      <item index="5" class="java.lang.String" itemvalue="TestNG.SelectionTest.debug" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1047,16 +1065,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1002" column="17" selection-start="37149" selection-end="37149" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/Selection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/testng-6.3-sources.jar!/org/testng/Assert.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="138" column="0" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.02035278" />
@@ -1124,7 +1132,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="34" selection-start="603" selection-end="603" vertical-scroll-proportion="0.20624152">
+        <state line="18" column="45" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="17" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.45606694">
           <folding />
         </state>
       </provider>

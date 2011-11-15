@@ -40,24 +40,26 @@ public class StandardQuery<T> implements Query<T> {
     String fieldName = this.fieldName;
     this.fieldName = null;
 
-    if (orValues.length == 0) {
-      return withEqualsX(fieldName, value);
-    } else {
-      List<Predicate<V>> predicates = Lists.newArrayList();
-      for (V v : Lists.asList(value, orValues)) {
-        predicates.add(Predicates.equalTo(v));
-      }
-
-      this.fieldValues.put(fieldName, Predicates.or(predicates));
-      return this;
-    }
+    return withFieldEquals(fieldName, value, orValues);
   }
 
   @Override
-  public Query<T> withEqualsX(String fieldName, Object value) {
+  public Query<T> withFieldEquals(String fieldName, Object value, Object... orValues) {
     checkNotNull(fieldName);
     checkNotNull(value);
-    this.fieldValues.put(fieldName, Predicates.equalTo(value));
+
+    Predicate<Object> predicate;
+    if (orValues.length == 0) {
+      predicate = Predicates.equalTo(value);
+    } else {
+      List<Predicate<Object>> predicates = Lists.newArrayList();
+      for (Object v : Lists.asList(value, orValues)) {
+        predicates.add(Predicates.equalTo(v));
+      }
+      predicate = Predicates.or(predicates);
+    }
+
+    this.fieldValues.put(fieldName, predicate);
     return this;
   }
 
