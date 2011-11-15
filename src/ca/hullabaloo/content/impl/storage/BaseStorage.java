@@ -6,6 +6,7 @@ import ca.hullabaloo.content.impl.query.StandardQuery;
 import com.google.common.eventbus.EventBus;
 
 abstract class BaseStorage implements Storage {
+  // this is really in the wrong spot
   private final EventBus events = new EventBus("storage");
 
   private volatile DataGatherer data;
