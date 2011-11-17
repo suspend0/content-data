@@ -23,7 +23,7 @@ public class ImmutableHashInterner<E> implements Interner<E> {
     if (sample == null) {
       return null;
     }
-    for (int h = smear(sample.hashCode()); true; h++) {
+    for (int h = Hashes.smear(sample.hashCode()); true; h++) {
       int slot = h & mask;
       E candidate = data[slot];
       if (candidate == null) {
@@ -44,7 +44,7 @@ public class ImmutableHashInterner<E> implements Interner<E> {
     int mask = tableSize - 1;
     for (E item : items) {
       int hash = item.hashCode();
-      for (int h = smear(hash); ; h++) {
+      for (int h = Hashes.smear(hash); ; h++) {
         int slot = h & mask;
         Object existing = data[slot];
         if (existing == null) {
@@ -65,19 +65,6 @@ public class ImmutableHashInterner<E> implements Interner<E> {
     // The table can't be completely full or we'll get infinite reprobes
     checkArgument(setSize < Ints.MAX_POWER_OF_TWO, "collection too large");
     return Ints.MAX_POWER_OF_TWO;
-  }
-
-  /*
-   * This method was written by Doug Lea with assistance from members of JCP
-   * JSR-166 Expert Group and released to the public domain, as explained at
-   * http://creativecommons.org/licenses/publicdomain
-   *
-   * As of 2010/06/11, this method is identical to the (package private) hash
-   * method in OpenJDK 7's java.util.HashMap class.
-   */
-  static int smear(int hashCode) {
-    hashCode ^= (hashCode >>> 20) ^ (hashCode >>> 12);
-    return hashCode ^ (hashCode >>> 7) ^ (hashCode >>> 4);
   }
 
   @SuppressWarnings({"unchecked"})

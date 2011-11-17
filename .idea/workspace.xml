@@ -59,6 +59,32 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/BloomFilterTest.java" line="33" class="ca.hullabaloo.content.util.BloomFilterTest" package="ca.hullabaloo.content.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/BloomFilter.java" line="28" class="ca.hullabaloo.content.util.BloomFilter" package="ca.hullabaloo.content.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
@@ -100,91 +126,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="QuickSelection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/QuickSelection.java">
+      <file leaf-file-name="Randoms.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/Randoms.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1908" selection-end="1908" vertical-scroll-proportion="0.0">
+            <state line="14" column="4" selection-start="366" selection-end="366" vertical-scroll-proportion="0.43103448">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MinMaxPriorityQueue.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/collect/MinMaxPriorityQueue.java">
+      <file leaf-file-name="BloomFilter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/BloomFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="0" selection-start="7328" selection-end="7328" vertical-scroll-proportion="0.0">
+            <state line="43" column="23" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preconditions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/base/Preconditions.java">
+      <file leaf-file-name="BitSet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/BitSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="2754" selection-end="2754" vertical-scroll-proportion="0.0">
+            <state line="269" column="0" selection-start="8842" selection-end="8842" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleQuickSelection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/SimpleQuickSelection.java">
+      <file leaf-file-name="BloomFilterTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/BloomFilterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="61" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
+            <state line="51" column="8" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectionTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/SelectionTest.java">
+      <file leaf-file-name="Invoker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/testng-6.3-sources.jar!/org/testng/internal/Invoker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="0" selection-start="1868" selection-end="1868" vertical-scroll-proportion="0.0">
+            <state line="696" column="0" selection-start="27640" selection-end="27640" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseStorage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java">
+      <file leaf-file-name="Arrays.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/Arrays.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="45" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+            <state line="3341" column="30" selection-start="135932" selection-end="135932" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Query.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java">
+      <file leaf-file-name="Hashes.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/Hashes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
+            <state line="17" column="34" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StandardQuery.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java">
+      <file leaf-file-name="Integer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/lang/Integer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="17" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.45606694">
+            <state line="1004" column="21" selection-start="37179" selection-end="37179" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/AbstractList.java">
+      <file leaf-file-name="HashesTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/HashesTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="0" selection-start="9380" selection-end="9380" vertical-scroll-proportion="0.0">
+            <state line="8" column="36" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeapSelection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/HeapSelection.java">
+      <file leaf-file-name="RandomsTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/RandomsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="578" selection-end="640" vertical-scroll-proportion="0.0">
+            <state line="19" column="7" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -204,22 +230,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/DataGatherer.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/api/WorkUnit.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/StorageTypes.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/Values.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/samples/RecentContent.java" />
-        <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/api/MultipleTypeTest.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/ArrayIdSet.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/Selection.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/NewQuickSelection.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/SimpleQuickSelection.java" />
-        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/HeapSelection.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/QuickSelection.java" />
         <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/SelectionTest.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java" />
         <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/HawtStorage.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/Random.java" />
+        <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/MultiplyWithCarryRandomTest.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/MultiplyWithCarryRandom.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/ImmutableHashInterner.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/Hashes.java" />
+        <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/HashesTest.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/BloomFilter.java" />
+        <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/BloomFilterTest.java" />
+        <option value="$PROJECT_DIR$/test/ca/hullabaloo/content/util/RandomsTest.java" />
+        <option value="$PROJECT_DIR$/src/ca/hullabaloo/content/util/Randoms.java" />
       </list>
     </option>
   </component>
@@ -248,59 +274,27 @@
             <id>Class structure</id>
           </State>
           <State>
-            <id>Cloning issues</id>
-          </State>
-          <State>
             <id>Code style issues</id>
           </State>
           <State>
-            <id>Declaration redundancy</id>
+            <id>Control FlowGroovy</id>
           </State>
           <State>
-            <id>Finalization issues</id>
+            <id>Control flow issues</id>
           </State>
           <State>
-            <id>General</id>
+            <id>Groovy</id>
           </State>
           <State>
-            <id>Inheritance issues</id>
-          </State>
-          <State>
-            <id>Initialization issues</id>
+            <id>J2ME issues</id>
           </State>
           <State>
             <id>JUnit issues</id>
           </State>
           <State>
-            <id>Naming conventions</id>
-          </State>
-          <State>
-            <id>Pattern Validation</id>
-          </State>
-          <State>
-            <id>Performance issues</id>
-          </State>
-          <State>
-            <id>Probable bugs</id>
-          </State>
-          <State>
-            <id>Properties Files</id>
-          </State>
-          <State>
-            <id>Security issues</id>
-          </State>
-          <State>
-            <id>Threading issues</id>
-          </State>
-          <State>
-            <id>Visibility issues</id>
+            <id>Logging issues</id>
           </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>AmbiguousMethodCall</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -330,8 +324,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Favorites" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -482,127 +477,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="samples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="query" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -614,20 +490,20 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Wrapping and Braces" />
+    <property name="options.lastSelected" value="Errors" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLanguage" value="Java" />
-    <property name="Repository.Attach.Sources" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="Repository.Attach.Sources" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -644,6 +520,9 @@
       <recent name="ca.hullabaloo.content.util" />
       <recent name="ca.hullabaloo.content.api" />
     </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="ca.hullabaloo.content.util.Hashes" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ca.hullabaloo.content.util" />
       <recent name="ca.hullabaloo.content.impl" />
@@ -659,65 +538,14 @@
       <recent name="ca.hullabaloo.content" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.SelectionTest">
-    <configuration default="false" name="StorageTypesTest.testRegister" type="TestNG" factoryName="TestNG" temporary="true">
-      <module name="content-data" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="ca.hullabaloo.content.impl.storage" />
-      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.impl.storage.StorageTypesTest" />
-      <option name="METHOD_NAME" value="testRegister" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53371" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Selection" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.Selection" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="content-data" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SelectionTest" type="TestNG" factoryName="TestNG" temporary="true">
+  <component name="RunManager" selected="TestNG.BloomFilterTest">
+    <configuration default="false" name="RandomsTest" type="TestNG" factoryName="TestNG" temporary="true">
       <module name="content-data" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
       <option name="PACKAGE_NAME" value="ca.hullabaloo.content.util" />
-      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.SelectionTest" />
+      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.RandomsTest" />
       <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="CLASS" />
@@ -737,7 +565,7 @@
       <properties />
       <listeners />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="49338" />
+        <option name="DEBUG_PORT" value="58947" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -746,14 +574,14 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="SelectionTest.largeList" type="TestNG" factoryName="TestNG" temporary="true">
+    <configuration default="false" name="RandomsTest.sameSeedSameResult" type="TestNG" factoryName="TestNG" temporary="true">
       <module name="content-data" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
       <option name="PACKAGE_NAME" value="ca.hullabaloo.content.util" />
-      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.SelectionTest" />
-      <option name="METHOD_NAME" value="largeList" />
+      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.RandomsTest" />
+      <option name="METHOD_NAME" value="sameSeedSameResult" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="METHOD" />
       <option name="VM_PARAMETERS" />
@@ -775,16 +603,16 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="SelectionTest.debug" type="TestNG" factoryName="TestNG" temporary="true">
+    <configuration default="false" name="BloomFilterTest" type="TestNG" factoryName="TestNG" temporary="true">
       <module name="content-data" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
       <option name="PACKAGE_NAME" value="ca.hullabaloo.content.util" />
-      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.SelectionTest" />
-      <option name="METHOD_NAME" value="debug" />
+      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.BloomFilterTest" />
+      <option name="METHOD_NAME" />
       <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -801,12 +629,70 @@
       <properties />
       <listeners />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="52235" />
+        <option name="DEBUG_PORT" value="56228" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="HashesTest" type="TestNG" factoryName="TestNG" temporary="true">
+      <module name="content-data" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="ca.hullabaloo.content.util" />
+      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.HashesTest" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="BloomFilterTest.medium" type="TestNG" factoryName="TestNG" temporary="true">
+      <module name="content-data" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="ca.hullabaloo.content.util" />
+      <option name="MAIN_CLASS_NAME" value="ca.hullabaloo.content.util.BloomFilterTest" />
+      <option name="METHOD_NAME" value="medium" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -819,24 +705,6 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -865,6 +733,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -952,12 +838,12 @@
       <method />
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="TestNG.Tests" />
-      <item index="1" class="java.lang.String" itemvalue="TestNG.StorageTypesTest.testRegister" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Selection" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.SelectionTest" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.SelectionTest.largeList" />
-      <item index="5" class="java.lang.String" itemvalue="TestNG.SelectionTest.debug" />
+      <item index="0" class="java.lang.String" itemvalue="TestNG.RandomsTest" />
+      <item index="1" class="java.lang.String" itemvalue="TestNG.Tests" />
+      <item index="2" class="java.lang.String" itemvalue="TestNG.RandomsTest.sameSeedSameResult" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.BloomFilterTest" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.HashesTest" />
+      <item index="5" class="java.lang.String" itemvalue="TestNG.BloomFilterTest.medium" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -967,6 +853,7 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value="SHOW_NON_PUBLIC,SHOW_INHERITED" />
   </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500">
     <option name="USER" value="" />
@@ -1000,20 +887,20 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24886535" sideWeight="0.694085" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.50508904" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49491096" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24873829" sideWeight="0.694085" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.50508904" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49491096" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32902032" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.6709797" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1065,88 +952,90 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/testng-6.3-sources.jar!/org/testng/Assert.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="0" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.02035278" />
+        <state line="77" column="36" selection-start="2297" selection-end="2297" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/regex/Matcher.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/api/StorageSpi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="806" column="18" selection-start="30451" selection-end="30451" vertical-scroll-proportion="0.020718232" />
+        <state line="6" column="17" selection-start="125" selection-end="125" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/Arrays.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/HawtStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1243" column="27" selection-start="42993" selection-end="42993" vertical-scroll-proportion="0.01981506" />
+        <state line="27" column="5" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/collect/Collections2.java">
+    <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/primitives/Longs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="19" selection-start="1447" selection-end="1447" vertical-scroll-proportion="-1.9335142" />
+        <state line="57" column="27" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/collect/Iterables.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/ImmutableHashInterner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="290" column="5" selection-start="10054" selection-end="10054" vertical-scroll-proportion="0.0" />
+        <state line="69" column="2" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/primitives/Ints.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="458" column="0" selection-start="15683" selection-end="15683" vertical-scroll-proportion="0.02035278" />
+        <state line="51" column="0" selection-start="1678" selection-end="1678" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/QuickSelection.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/BitSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1908" selection-end="1908" vertical-scroll-proportion="0.0" />
+        <state line="269" column="0" selection-start="8842" selection-end="8842" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/collect/MinMaxPriorityQueue.java">
+    <entry file="jar://$PROJECT_DIR$/lib/testng-6.3-sources.jar!/org/testng/internal/Invoker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="0" selection-start="7328" selection-end="7328" vertical-scroll-proportion="0.0" />
+        <state line="696" column="0" selection-start="27640" selection-end="27640" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/guava-10.0.1-sources.jar!/com/google/common/base/Preconditions.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2754" selection-end="2754" vertical-scroll-proportion="0.0" />
+        <state line="3341" column="30" selection-start="135932" selection-end="135932" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/SimpleQuickSelection.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/Hashes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="61" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0" />
+        <state line="17" column="34" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/SelectionTest.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/lang/Integer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="1868" selection-end="1868" vertical-scroll-proportion="0.0" />
+        <state line="1004" column="21" selection-start="37179" selection-end="37179" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar!/src/java/util/AbstractList.java">
+    <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/HashesTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="0" selection-start="9380" selection-end="9380" vertical-scroll-proportion="0.0" />
+        <state line="8" column="36" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/HeapSelection.java">
+    <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/BloomFilterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="578" selection-end="640" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/storage/BaseStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="45" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+        <state line="51" column="8" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/api/Query.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/BloomFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
+        <state line="43" column="23" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/impl/query/StandardQuery.java">
+    <entry file="file://$PROJECT_DIR$/test/ca/hullabaloo/content/util/RandomsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="17" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.45606694">
+        <state line="19" column="7" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/hullabaloo/content/util/Randoms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="4" selection-start="366" selection-end="366" vertical-scroll-proportion="0.43103448">
           <folding />
         </state>
       </provider>

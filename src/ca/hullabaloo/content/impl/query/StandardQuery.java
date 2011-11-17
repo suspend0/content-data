@@ -64,6 +64,11 @@ public class StandardQuery<T> implements Query<T> {
   }
 
   @Override
+  public Query<T> orderBy(String fieldName) {
+    return null;  //To change body of implemented methods use File | Settings | File Templates.
+  }
+
+  @Override
   public IdSet<T> execute() {
     Iterator<Map.Entry<String, Supplier<IdSet<T>>>> ids =
         this.data.getAll(this.type, this.fieldValues).entrySet().iterator();
