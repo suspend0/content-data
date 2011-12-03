@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/content-data.iml" filepath="$PROJECT_DIR$/content-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hawtdb/hawtdb/hawtdb.iml" filepath="$PROJECT_DIR$/../hawtdb/hawtdb/hawtdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hawtdb/hawtdb-project.iml" filepath="$PROJECT_DIR$/../hawtdb/hawtdb-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hawtdb/hawtdb-website/hawtdb-website.iml" filepath="$PROJECT_DIR$/../hawtdb/hawtdb-website/hawtdb-website.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven/maven.iml" filepath="$PROJECT_DIR$/maven/maven.iml" />
     </modules>
   </component>
 </project>

@@ -9,9 +9,6 @@ import org.testng.annotations.Test;
 
 import java.util.*;
 
-/**
- *
- */
 public class SelectionTest {
   @DataProvider(name = "impl")
   private Object[][] implementations() {
@@ -53,7 +50,7 @@ public class SelectionTest {
       }
       Collections.shuffle(items);
 
-      doRun(s, label, size, n, items);
+      doRun(s, label, n, items);
     }
   }
 
@@ -70,11 +67,11 @@ public class SelectionTest {
       }
       Collections.shuffle(items);
 
-      doRun(s, label, size, n, items);
+      doRun(s, label, n, items);
     }
   }
 
-  private void doRun(Selection s, String label, int size, int n, List<Integer> items) {
+  private void doRun(Selection s, String label, int n, List<Integer> items) {
     class C implements Comparator<Integer> {
       int compares = 0;
 
@@ -91,10 +88,10 @@ public class SelectionTest {
     List<Integer> actual = s.topN(n, cmp, items.iterator());
     List<Integer> expected = Lists.newArrayList(items);
     Collections.sort(expected);
-    expected = expected.subList(0, Math.min(n, size));
+    expected = expected.subList(0, Math.min(n, items.size()));
 
     System.out.printf(s.getClass().getSimpleName() + "/%s: %s compares selecting %s from %s (%.2f)\n",
-        label, cmp.compares, n, size, (cmp.compares / (double) size));
+        label, cmp.compares, n, items.size(), (cmp.compares / (double) items.size()));
     Assert.assertEquals(actual, expected, Arrays.toString(input));
   }
 }
