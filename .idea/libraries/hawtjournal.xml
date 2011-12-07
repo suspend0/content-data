@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="hawtjournal">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/hawtjournal-1.1-SNAPSHOT.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

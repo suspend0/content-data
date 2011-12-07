@@ -9,12 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="maven" />
-    <orderEntry type="library" name="guava" level="project" />
-    <orderEntry type="library" name="testng" level="project" />
-    <orderEntry type="library" name="mockito" level="project" />
-    <orderEntry type="library" name="hawtbuf" level="project" />
-    <orderEntry type="library" name="hawtjournal" level="project" />
-    <orderEntry type="library" name="logging" level="project" />
   </component>
 </module>
 

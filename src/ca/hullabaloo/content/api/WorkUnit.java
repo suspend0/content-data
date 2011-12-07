@@ -2,10 +2,10 @@ package ca.hullabaloo.content.api;
 
 import ca.hullabaloo.content.impl.BasicUpdater;
 import ca.hullabaloo.content.impl.storage.Block;
+import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import org.testng.collections.Lists;
 
 import java.util.List;
 

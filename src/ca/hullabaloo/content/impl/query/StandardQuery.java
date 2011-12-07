@@ -43,8 +43,7 @@ public class StandardQuery<T> implements Query<T> {
     return withFieldEquals(fieldName, value, orValues);
   }
 
-  @Override
-  public Query<T> withFieldEquals(String fieldName, Object value, Object... orValues) {
+  private Query<T> withFieldEquals(String fieldName, Object value, Object... orValues) {
     checkNotNull(fieldName);
     checkNotNull(value);
 

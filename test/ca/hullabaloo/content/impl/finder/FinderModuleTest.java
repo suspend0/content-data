@@ -37,12 +37,15 @@ public class FinderModuleTest {
     storage.register(t);
     storage.begin()
         .add(new Update(t, 1, "name", "bob"))
-        .add(new Update(t, 1, "value", "17"))
+        .add(new Update(t, 1, "value", "27"))
+        .add(new Update(t, 2, "name", "lou"))
+        .add(new Update(t, 2, "value", "23"))
         .commit();
 
     MyFinder a = injector.getInstance(MyFinder.class);
-    List<MvelExpressionTest.Bean> r = Lists.newArrayList(a.foo("17"));
+    List<MvelExpressionTest.Bean> r = Lists.newArrayList(a.foo("27"));
     assertThat(Iterables.getOnlyElement(r).name(), equalTo("bob"));
+    assertThat(Iterables.getOnlyElement(r).value(), equalTo("27"));
   }
 
   @Test

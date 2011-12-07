@@ -16,7 +16,7 @@ public class BloomFilterTest {
     Assert.assertFalse(b.contains("bar"));
   }
 
-  @Test(invocationCount = 100)
+  @Test(invocationCount = 2)
   public void medium() {
     String[] items = {
         "kvohpEhhDFjpgfFnAFnnnlhgvpDphhFpdblppoveFxxpjhFpoEFhhhoExphpFhnjDqFpfgEzploFeCDl",
@@ -34,7 +34,7 @@ public class BloomFilterTest {
     run(Arrays.asList(items));
   }
 
-  @Test(invocationCount = 100)
+  @Test(invocationCount = 100, enabled = false)
   public void large() {
     int count = 10884;
     List<String> items = Lists.newArrayList();
