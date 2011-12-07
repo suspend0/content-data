@@ -98,9 +98,9 @@
             <version>1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.fusesource.hawtbuf</groupId>
-            <artifactId>hawtbuf</artifactId>
-            <version>1.4</version>
+            <groupId>org.fusesource.hawtjournal</groupId>
+            <artifactId>hawtjournal</artifactId>
+            <version>1.1-SNAPSHOT</version>
             <classifier>sources</classifier>
         </dependency>
 

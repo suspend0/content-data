@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.fusesource.hawtjournal:hawtjournal:sources:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fusesource/hawtjournal/hawtjournal/1.1-SNAPSHOT/hawtjournal-1.1-SNAPSHOT-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fusesource/hawtjournal/hawtjournal/1.1-SNAPSHOT/hawtjournal-1.1-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fusesource/hawtjournal/hawtjournal/1.1-SNAPSHOT/hawtjournal-1.1-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
