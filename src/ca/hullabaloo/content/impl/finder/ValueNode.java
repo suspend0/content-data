@@ -24,6 +24,6 @@ public class ValueNode extends Node {
 
   @Override
   public String mvel() {
-    return String.format("%s%s%s", property, comparisonOp.mvel(), FExpressions.bindVariableToMvel(value));
+    return String.format("%s%s%s", property, comparisonOp.mvel(), MvelExpressions.bindVariableToMvel(value));
   }
 }

@@ -7,7 +7,5 @@ public interface Query<T> {
 
   public Query<T> withFieldEquals(String fieldName, Object value, Object... orValues);
 
-  public Query<T> orderBy(String fieldName);
-
   public IdSet<T> execute();
 }

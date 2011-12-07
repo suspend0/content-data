@@ -6,6 +6,7 @@ public interface Storage {
   String ID_METHOD_NAME = "id";
 
   public static Function<Class<?>, Integer> ID = new Function<Class<?>, Integer>() {
+    @Override
     public Integer apply(Class<?> type) {
       return type.getName().hashCode();
     }

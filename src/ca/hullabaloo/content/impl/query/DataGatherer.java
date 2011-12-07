@@ -74,6 +74,9 @@ public class DataGatherer {
 
    */
 
+  /**
+   * Returns field names to a set of ids that have the indicated value
+    */
   public <T> Map<String, Supplier<IdSet<T>>> getAll(Class<T> type, Map<String, Predicate<?>> fieldValues) {
     final ImmutableMap.Builder<String, Supplier<IdSet<T>>> result = ImmutableMap.builder();
     final ImmutableMap<String, Index<T>> newIndexes;

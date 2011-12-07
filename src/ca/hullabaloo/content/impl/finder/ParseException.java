@@ -6,7 +6,15 @@ import org.parboiled.errors.ParseError;
 import java.util.List;
 
 public class ParseException extends RuntimeException {
-  public ParseException(String expression, List<ParseError> parseErrors) {
+  public ParseException(List<ParseError> parseErrors) {
     super(ErrorUtils.printParseErrors(parseErrors));
+  }
+
+  public ParseException(String message) {
+    super(message);
+  }
+
+  public ParseException(Throwable cause) {
+    super(cause);
   }
 }

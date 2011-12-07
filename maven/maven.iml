@@ -10,16 +10,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.parboiled:parboiled-java:1.0.2" level="project" />
-    <orderEntry type="library" name="Maven: asm:asm:3.3.1" level="project" />
-    <orderEntry type="library" name="Maven: asm:asm-util:3.3.1" level="project" />
-    <orderEntry type="library" name="Maven: asm:asm-tree:3.3.1" level="project" />
-    <orderEntry type="library" name="Maven: asm:asm-analysis:3.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.parboiled:parboiled-core:1.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mvel:mvel2:2.1.0.drools4" level="project" />
-    <orderEntry type="library" name="Maven: com.google.inject:guice:2.0" level="project" />
-    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.inject.extensions:guice-multibindings:2.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.parboiled:parboiled-java:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: asm:asm:3.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: asm:asm-util:3.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: asm:asm-tree:3.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: asm:asm-analysis:3.3.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.parboiled:parboiled-core:1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.mvel:mvel2:2.1.0.drools4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.mvel:mvel2:sources:2.1.0.drools4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.inject:guice:3.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.inject:guice:sources:3.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.inject.extensions:guice-multibindings:3.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.inject.extensions:guice-multibindings:sources:3.0" level="project" />
   </component>
 </module>
 

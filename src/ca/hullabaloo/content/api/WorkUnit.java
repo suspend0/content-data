@@ -24,8 +24,9 @@ public class WorkUnit {
     return new BasicUpdater<T>(this, type);
   }
 
-  public void add(Update update) {
+  public WorkUnit add(Update update) {
     updates.add(update);
+    return this;
   }
 
   public void commit() {

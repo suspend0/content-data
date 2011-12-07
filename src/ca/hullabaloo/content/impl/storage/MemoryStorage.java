@@ -1,14 +1,13 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.StorageSpi;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Interner;
 
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.google.inject.internal.Preconditions.checkState;
 
 public class MemoryStorage extends BaseStorage {
   private volatile int maxReads = Integer.MAX_VALUE;
@@ -24,7 +23,7 @@ public class MemoryStorage extends BaseStorage {
 
     @Override
     public Iterator<byte[]> data() {
-      checkState(reads.getAndIncrement() < maxReads, "only allowed to read %s times", maxReads);
+      Preconditions.checkState(reads.getAndIncrement() < maxReads, "only allowed to read %s times", maxReads);
       return data.iterator();
     }
 

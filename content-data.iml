@@ -8,15 +8,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="maven" />
     <orderEntry type="library" name="guava" level="project" />
     <orderEntry type="library" name="testng" level="project" />
     <orderEntry type="library" name="mockito" level="project" />
     <orderEntry type="library" name="hawtbuf" level="project" />
     <orderEntry type="library" name="hawtjournal" level="project" />
     <orderEntry type="library" name="logging" level="project" />
-    <orderEntry type="module" module-name="maven" />
-    <orderEntry type="library" name="Maven: org.parboiled:parboiled-java:1.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.parboiled:parboiled-core:1.0.2" level="project" />
   </component>
 </module>
 

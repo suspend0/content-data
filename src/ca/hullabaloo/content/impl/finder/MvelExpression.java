@@ -11,20 +11,34 @@ import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-public class FExpression<T> {
+public class MvelExpression<T> {
+  static {
+    // MVEL doesn't' like properties like "name()", it prefers "getName", but Storage requires "name()";
+    // this property adapts mvel to support "name()";
+    MVEL.COMPILER_OPT_ALLOW_NAKED_METH_CALL = true;
+  }
+
   private final Serializable expr;
   private final SimpleVariableSpaceModel model;
   private final int argumentCount;
 
-  FExpression(Node root, Class<T> baseType, String[] paramNames, Class[] paramTypes) {
+  MvelExpression(Node root, Class<T> baseType, String[] paramNames, Class[] paramTypes) {
     this(root, baseType, stitch(paramNames, paramTypes));
   }
 
+  public boolean evaluate(T item, Object... parameters) {
+    checkArgument(parameters.length == argumentCount, "expected %s arguments (got %s)",
+        argumentCount, parameters.length);
+    Object r = MVEL.executeExpression(this.expr, item, this.model.createFactory(parameters));
+    return r == Boolean.TRUE;
+  }
+
   // this must stay private b/c we depend on map iteration order
-  private FExpression(Node root, Class<T> baseType, ImmutableMap<String, Class> params) {
-    checkArgument(root.params().equals(params.keySet()),
-        "mismatched parameters declaration %s, expression %s",
-        params.keySet(), root.params());
+  private MvelExpression(Node root, Class<T> baseType, ImmutableMap<String, Class> params) {
+    if (!root.params().equals(params.keySet())) {
+      throw new ParseException(String.format("mismatched parameters declaration %s, expression %s",
+          params.keySet(), root.params()));
+    }
 
     String expr = root.mvel();
     params = rename(params);
@@ -36,18 +50,22 @@ public class FExpression<T> {
     ctx.withIndexedVars(Iterables.toArray(params.keySet(), String.class));
     ctx.addInputs(params);
 
-    // a final validation step
-    checkArgument(MVEL.analyze(expr, ctx) == Boolean.class);
+    try {
+      // a final validation step
+      checkArgument(MVEL.analyze(expr, ctx) == Boolean.class);
 
-    this.model = new SimpleVariableSpaceModel(ctx.getIndexedVarNames());
-    this.expr = MVEL.compileExpression(expr, ctx);
-    this.argumentCount = params.size();
+      this.model = new SimpleVariableSpaceModel(ctx.getIndexedVarNames());
+      this.expr = MVEL.compileExpression(expr, ctx);
+      this.argumentCount = params.size();
+    } catch (RuntimeException e) {
+      throw new ParseException(e);
+    }
   }
 
   private static ImmutableMap<String, Class> rename(ImmutableMap<String, Class> params) {
     ImmutableMap.Builder<String, Class> r = ImmutableMap.builder();
     for (Map.Entry<String, Class> e : params.entrySet()) {
-      r.put(FExpressions.bindVariableToMvel(e.getKey()), e.getValue());
+      r.put(MvelExpressions.bindVariableToMvel(e.getKey()), e.getValue());
     }
     return r.build();
   }
@@ -59,12 +77,5 @@ public class FExpression<T> {
       r.put(paramNames[i], paramTypes[i]);
     }
     return r.build();
-  }
-
-  public boolean evaluate(T item, Object... parameters) {
-    checkArgument(parameters.length == argumentCount, "expected %s arguments (got %s)",
-        argumentCount, parameters.length);
-    Object r = MVEL.executeExpression(this.expr, item, this.model.createFactory(parameters));
-    return r == Boolean.TRUE;
   }
 }

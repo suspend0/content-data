@@ -15,7 +15,7 @@ public class FParser {
     Grammar parser = Parboiled.createParser(Grammar.class);
     ParsingResult<Node> r = new ReportingParseRunner<Node>(parser.FinderExpression()).run(expression);
     if (r.hasErrors()) {
-      throw new ParseException(expression, r.parseErrors);
+      throw new ParseException(r.parseErrors);
     }
     return r.resultValue;
   }
