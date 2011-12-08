@@ -5,6 +5,7 @@ import ca.hullabaloo.content.api.StorageSpi;
 import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.impl.ArrayIdSet;
 import ca.hullabaloo.content.impl.storage.Block;
+import ca.hullabaloo.content.impl.storage.UpdateBatch;
 import ca.hullabaloo.content.util.Latch;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
@@ -29,9 +30,11 @@ public class DataGatherer {
   }
 
   @Subscribe
-  public void handleUpdate(Update update) {
+  public void handleUpdate(UpdateBatch updates) {
     for (Index index : indexes) {
-      index.receive(update);
+      for (Update update : updates) {
+        index.receive(update);
+      }
     }
   }
 
@@ -76,7 +79,7 @@ public class DataGatherer {
 
   /**
    * Returns field names to a set of ids that have the indicated value
-    */
+   */
   public <T> Map<String, Supplier<IdSet<T>>> getAll(Class<T> type, Map<String, Predicate<?>> fieldValues) {
     final ImmutableMap.Builder<String, Supplier<IdSet<T>>> result = ImmutableMap.builder();
     final ImmutableMap<String, Index<T>> newIndexes;

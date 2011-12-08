@@ -3,6 +3,8 @@ package ca.hullabaloo.content.impl.storage;
 import ca.hullabaloo.content.api.StorageSpi;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Interner;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 
 import java.util.Iterator;
 import java.util.Queue;
@@ -28,19 +30,30 @@ public class MemoryStorage extends BaseStorage {
     }
 
     @Override
-    public void append(byte[] bytes) {
-      MemoryStorage.this.data.add(bytes);
-    }
-
-    @Override
     public int[] ids(Class<?> type) {
       return types.ids(type);
     }
   };
+  private final EventBus events;
+
+  public MemoryStorage() {
+    this.events = new EventBus();
+    this.events.register(this);
+  }
+
+  @Subscribe
+  public void updates(UpdateBatch updates) {
+    this.data.add(updates.bytes());
+  }
 
   public MemoryStorage maxReads(int max) {
     this.maxReads = max;
     return this;
+  }
+
+  @Override
+  protected EventBus eventBus() {
+    return this.events;
   }
 
   @Override

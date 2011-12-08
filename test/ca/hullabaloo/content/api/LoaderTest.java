@@ -29,7 +29,7 @@ public class LoaderTest {
     b.commit();
 
     List<Named> r = s.loader(Named.class).getAll(1, 2, 3);
-    assertThat(r.size(), equalTo(3)); // no 4
+    assertThat(r.size(), equalTo(3)); // not 4
     check(r.get(0), 1, "butter", "creamy");
     assertThat(r.get(1), nullValue());
     check(r.get(2), 3, "bacon", "yummy");

@@ -135,7 +135,7 @@ public class MultiValueSelectionTest {
     doRun(s, "problem", 199, asList(input));
   }
 
-  @Test(dataProvider = "impl")
+  @Test(dataProvider = "impl", enabled = false)
   public void largeList(MultiValueSelection s) {
     String label = "large";
     Random rand = new Random();

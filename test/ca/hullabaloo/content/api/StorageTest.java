@@ -3,6 +3,7 @@ package ca.hullabaloo.content.api;
 import ca.hullabaloo.content.impl.storage.HawtStorage;
 import ca.hullabaloo.content.impl.storage.MemoryStorage;
 import ca.hullabaloo.content.util.Guava;
+import com.google.common.eventbus.EventBus;
 import com.google.common.io.Files;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.DataProvider;
@@ -21,7 +22,7 @@ public class StorageTest {
     temps.add(dir);
     return new Object[][]{
         {new MemoryStorage()},
-        {new HawtStorage(dir)}
+        {new HawtStorage(new EventBus(), dir)}
     };
   }
 

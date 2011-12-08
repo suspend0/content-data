@@ -6,6 +6,8 @@ import ca.hullabaloo.content.util.SizeUnit;
 import com.google.common.base.Function;
 import com.google.common.collect.Interner;
 import com.google.common.collect.Iterators;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.Ints;
 import org.fusesource.hawtjournal.api.Journal;
 import org.fusesource.hawtjournal.api.Location;
@@ -18,14 +20,21 @@ import java.util.Iterator;
 public class HawtStorage extends BaseStorage {
   private final StorageTypes types = new StorageTypes();
   private final StorageSpi spi;
+  private final EventBus eventBus;
 
-  public HawtStorage(File directory) {
-    super();
+  public HawtStorage(EventBus eventBus, File directory) {
     try {
       spi = new HawtStorageSpi(types, directory);
+      this.eventBus = eventBus;
+      this.eventBus.register(spi);
     } catch (IOException e) {
       throw new RuntimeIOException(e);
     }
+  }
+
+  @Override
+  protected EventBus eventBus() {
+    return eventBus;
   }
 
   @Override
@@ -82,10 +91,10 @@ public class HawtStorage extends BaseStorage {
       return Iterators.transform(base, reader);
     }
 
-    @Override
-    public void append(byte[] bytes) {
+    @Subscribe
+    public void updates(UpdateBatch updates) {
       try {
-        this.data.write(ByteBuffer.wrap(bytes), true);
+        this.data.write(ByteBuffer.wrap(updates.bytes()), true);
       } catch (IOException e) {
         throw new RuntimeIOException(e);
       }

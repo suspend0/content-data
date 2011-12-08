@@ -6,10 +6,9 @@ import ca.hullabaloo.content.impl.query.StandardQuery;
 import com.google.common.eventbus.EventBus;
 
 abstract class BaseStorage implements Storage {
-  // this is really in the wrong spot
-  private final EventBus events = new EventBus("storage");
-
   private volatile DataGatherer data;
+
+  protected abstract EventBus eventBus();
 
   protected abstract StorageSpi spi();
 
@@ -32,7 +31,7 @@ abstract class BaseStorage implements Storage {
 
   @Override
   public final WorkUnit begin() {
-    return new WorkUnit(spi(), events);
+    return new WorkUnit(eventBus());
   }
 
   private DataGatherer data() {
@@ -41,7 +40,7 @@ abstract class BaseStorage implements Storage {
       synchronized (this) {
         if (data == null) {
           data = new DataGatherer(spi());
-          events.register(data);
+          eventBus().register(data);
         }
       }
     }

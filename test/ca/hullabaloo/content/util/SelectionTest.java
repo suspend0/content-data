@@ -37,7 +37,7 @@ public class SelectionTest {
     Assert.assertEquals(actual, Ints.asList(expected));
   }
 
-  @Test(dataProvider = "impl")
+  @Test(dataProvider = "impl", enabled = false)
   public void largeList(Selection s) {
     String label = "large";
     Random rand = new Random();
