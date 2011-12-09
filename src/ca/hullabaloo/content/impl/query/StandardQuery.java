@@ -2,6 +2,7 @@ package ca.hullabaloo.content.impl.query;
 
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.Query;
+import ca.hullabaloo.content.api.StorageSpi;
 import ca.hullabaloo.content.impl.storage.Values;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -16,14 +17,14 @@ import java.util.Map;
 import static com.google.common.base.Preconditions.*;
 
 public class StandardQuery<T> implements Query<T> {
-  private final DataGatherer data;
   private final Class<T> type;
   private final T fields;
   private final Map<String, Predicate<?>> fieldValues = Maps.newHashMap();
   private String fieldName;
+  private final StorageSpi storage;
 
-  public StandardQuery(DataGatherer data, Class<T> type) {
-    this.data = data;
+  public StandardQuery(StorageSpi storage, Class<T> type) {
+    this.storage = storage;
     this.type = type;
     this.fields = proxy(type);
   }
@@ -65,15 +66,19 @@ public class StandardQuery<T> implements Query<T> {
   @Override
   public IdSet<T> execute() {
     // TODO: hack -- no field values should mean return all values
-    if(this.fieldValues.isEmpty()) {
+    if (this.fieldValues.isEmpty()) {
       this.fieldValues.put("name", Predicates.<Object>alwaysTrue());
     }
-    Iterator<Map.Entry<String, Supplier<IdSet<T>>>> ids =
-        this.data.getAll(this.type, this.fieldValues).entrySet().iterator();
+    List<Supplier<IdSet<T>>> list = Lists.newArrayList();
+    for (Map.Entry<String, Predicate<?>> restriction : fieldValues.entrySet()) {
+      list.add(storage.index(this.type, restriction.getKey(), restriction.getValue()));
+    }
+
+    Iterator<Supplier<IdSet<T>>> ids = list.iterator();
     if (ids.hasNext()) {
-      IdSet<T> r = ids.next().getValue().get();
+      IdSet<T> r = ids.next().get();
       while (ids.hasNext()) {
-        r = r.and(ids.next().getValue().get());
+        r = r.and(ids.next().get());
       }
       return r;
     } else {

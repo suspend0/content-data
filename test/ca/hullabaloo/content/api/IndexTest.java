@@ -47,6 +47,8 @@ public class IndexTest {
       b.commit();
       IdSet<Named> r = q.execute();
       Assert.assertEquals(r.size(), 2);
+      Assert.assertTrue(r.contains(3));
+      Assert.assertTrue(r.contains(5));
     }
   }
 }

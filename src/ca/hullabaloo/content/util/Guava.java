@@ -1,12 +1,16 @@
 package ca.hullabaloo.content.util;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Supplier;
+import com.google.common.base.Throwables;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
- * Things I use which were deprecated by guava-libraries
+ * Things I use which were deprecated or not implemented by guava-libraries
  */
 public class Guava {
 
@@ -56,4 +60,20 @@ public class Guava {
     if (!file.delete()) {
       throw new IOException("Failed to delete " + file);
     }
-  }}
+  }
+
+  public static <T> Supplier<T> supplier(final Future<T> future) {
+    return new Supplier<T>() {
+      @Override
+      public T get() {
+        try {
+          return future.get();
+        } catch (InterruptedException e) {
+          throw Throwables.propagate(e);
+        } catch (ExecutionException e) {
+          throw Throwables.propagate(e);
+        }
+      }
+    };
+  }
+}

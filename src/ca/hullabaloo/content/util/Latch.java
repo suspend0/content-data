@@ -1,5 +1,7 @@
 package ca.hullabaloo.content.util;
 
+import com.google.common.base.Throwables;
+
 public class Latch {
   private volatile boolean locked = true;
 
@@ -10,7 +12,7 @@ public class Latch {
           try {
             this.wait();
           } catch (InterruptedException e) {
-            // swallow;
+            throw Throwables.propagate(e);
           }
         }
       }

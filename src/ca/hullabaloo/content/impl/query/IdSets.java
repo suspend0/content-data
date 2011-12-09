@@ -65,5 +65,9 @@ public class IdSets {
     public int next() {
       throw new NoSuchElementException();
     }
+    
+    public String toString() {
+      return "[]";
+    }
   }
 }

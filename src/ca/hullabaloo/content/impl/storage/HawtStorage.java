@@ -1,9 +1,12 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.RuntimeIOException;
+import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.StorageSpi;
 import ca.hullabaloo.content.util.SizeUnit;
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.base.Supplier;
 import com.google.common.collect.Interner;
 import com.google.common.collect.Iterators;
 import com.google.common.eventbus.EventBus;
@@ -89,6 +92,11 @@ public class HawtStorage extends BaseStorage {
     public Iterator<byte[]> data() {
       Iterator<Location> base = this.data.iterator();
       return Iterators.transform(base, reader);
+    }
+
+    @Override
+    public <T, V> Supplier<IdSet<T>> index(Class<T> type, String fieldName, Predicate<V> predicate) {
+      throw new UnsupportedOperationException("nyi");
     }
 
     @Subscribe

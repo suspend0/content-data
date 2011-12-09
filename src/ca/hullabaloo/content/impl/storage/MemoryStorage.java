@@ -1,7 +1,10 @@
 package ca.hullabaloo.content.impl.storage;
 
+import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.StorageSpi;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Predicate;
+import com.google.common.base.Supplier;
 import com.google.common.collect.Interner;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
@@ -17,6 +20,8 @@ public class MemoryStorage extends BaseStorage {
 
   private final Queue<byte[]> data = new ConcurrentLinkedQueue<byte[]>();
   private final StorageTypes types = new StorageTypes();
+  private final EventBus events;
+
   private final StorageSpi spi = new StorageSpi() {
     @Override
     public Interner<String> properties(Class<?> type) {
@@ -30,15 +35,22 @@ public class MemoryStorage extends BaseStorage {
     }
 
     @Override
+    public <T, V> Supplier<IdSet<T>> index(Class<T> type, String fieldName, Predicate<V> predicate) {
+      return indexes.getIndex(type, fieldName, predicate);
+    }
+
+    @Override
     public int[] ids(Class<?> type) {
       return types.ids(type);
     }
   };
-  private final EventBus events;
+
+  private final Indexer indexes = new Indexer(spi);
 
   public MemoryStorage() {
     this.events = new EventBus();
     this.events.register(this);
+    this.events.register(indexes);
   }
 
   @Subscribe

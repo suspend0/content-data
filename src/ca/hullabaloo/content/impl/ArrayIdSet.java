@@ -16,7 +16,7 @@ public class ArrayIdSet<T> implements IdSet<T> {
   public static <T> IdSet<T> of(int... values) {
     values = values.clone();
     Arrays.sort(values);
-    
+
     return ofSorted(values);
   }
 
@@ -106,7 +106,11 @@ public class ArrayIdSet<T> implements IdSet<T> {
       ArrayIdSet<?> that = (ArrayIdSet<?>) obj;
       return Arrays.equals(this.values, that.values);
     } else if (obj instanceof IdSet) {
-      throw new UnsupportedOperationException("todo");
+      IdSet<?> that = (IdSet<?>) obj;
+      if (that.size() == 0) {
+        return this.size() == 0;
+      }
+      throw new UnsupportedOperationException("todo:" + obj.getClass());
     }
     return false;
   }
