@@ -1,6 +1,7 @@
 package ca.hullabaloo.content.api;
 
 import ca.hullabaloo.content.impl.storage.Block;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
@@ -20,17 +21,17 @@ public class BlockTest {
     {
       ByteArrayDataOutput out = ByteStreams.newDataOutput();
       Block.Writer w = Block.writer(out);
-      w.write(10, 1, "a", "eh");
-      w.write(10, 1, "b", "bee");
-      w.write(10, 1, "c", "sea");
+      w.write(String.class, 1, String.class, "a", "eh");
+      w.write(String.class, 1, String.class, "b", "bee");
+      w.write(String.class, 1, String.class, "c", "sea");
       data.add(out.toByteArray());
     }
     {
       ByteArrayDataOutput out = ByteStreams.newDataOutput();
       Block.Writer w = Block.writer(out);
-      w.write(11, 7, "x", "ex");
-      w.write(10, 2, "a", "eh!");
-      w.write(10, 2, "b", "bee!");
+      w.write(Integer.class, 7, Integer.class, "x", "ex");
+      w.write(String.class, 2, String.class, "a", "eh!");
+      w.write(String.class, 2, String.class, "b", "bee!");
       data.add(out.toByteArray());
     }
     return data.iterator();
@@ -41,7 +42,7 @@ public class BlockTest {
     Iterator<byte[]> data = simpleData();
     Block.Reader r = Block.reader(data);
     int count = 0;
-    while (r.advanceTo(new int[]{10})) {
+    while (r.advanceTo(ImmutableSet.of((Class) String.class))) {
       count++;
     }
 
@@ -51,18 +52,18 @@ public class BlockTest {
   @Test
   public void testRead() {
     Block.Sink sink = mock(Block.Sink.class);
-    when(sink.accept(anyInt(), any(String.class), any(String.class)))
+    when(sink.accept(any(Class.class), anyInt(), any(Class.class), any(String.class), any(String.class)))
         .thenReturn(true, false);
 
     Iterator<byte[]> data = simpleData();
     Block.Reader r = Block.reader(data);
-    int count = r.read(new int[]{10}, sink);
+    int count = r.read(ImmutableSet.of((Class) String.class), sink);
 
     Assert.assertEquals(count, 2);
 
     InOrder v = Mockito.inOrder(sink);
-    v.verify(sink).accept(1, "a", "eh");
-    v.verify(sink).accept(1, "b", "bee");
+    v.verify(sink).accept(String.class, 1, String.class, "a", "eh");
+    v.verify(sink).accept(String.class, 1, String.class, "b", "bee");
     Mockito.verifyNoMoreInteractions(sink);
   }
 }

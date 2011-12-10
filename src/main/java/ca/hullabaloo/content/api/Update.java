@@ -1,6 +1,6 @@
 package ca.hullabaloo.content.api;
 
-public class Update {
+public class  Update {
   public final Class<?> type;
   public final int id;
   public final String field;

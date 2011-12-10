@@ -2,7 +2,6 @@ package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.RuntimeIOException;
 import ca.hullabaloo.content.api.IdSet;
-import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.StorageSpi;
 import ca.hullabaloo.content.util.InternSet;
 import ca.hullabaloo.content.util.SizeUnit;
@@ -10,7 +9,6 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
 import com.google.common.collect.Iterators;
-import com.google.common.collect.Multimap;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.primitives.Ints;
@@ -21,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
-import java.util.Set;
 
 public class HawtStorage extends BaseStorage {
   private final StorageTypes types = new StorageTypes();
@@ -100,17 +97,6 @@ public class HawtStorage extends BaseStorage {
     @Override
     public <T, V> Supplier<IdSet<T>> index(Class<T> type, String fieldName, Predicate<V> predicate) {
       throw new UnsupportedOperationException("nyi");
-    }
-
-    @Override
-    public <T> int[] ids(Multimap<Class<T>, String> fields) {
-      Set<Class<?>> t = types.fractionate(fields).keySet();
-      int[] r = new int[t.size()];
-      int i = 0;
-      for (Class<?> c : t) {
-        r[i] = Storage.ID.apply(c);
-      }
-      return r;
     }
 
     @Subscribe

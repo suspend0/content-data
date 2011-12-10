@@ -132,13 +132,13 @@ class Indexer {
       }
     }
 
-    private <T> List<Update> scan(final Class<T> type, final ImmutableList<IndexBuild> work) {
+    private List<Update> scan(final Class type, final ImmutableList<IndexBuild> work) {
       final List<Update> updates = Lists.newArrayList();
 
       Block.Reader reader = Block.reader(storage.data());
-      reader.read(storage.ids(Guava.multimap(type, getIndexFields(work))), new Block.Sink() {
+      reader.read(ImmutableSet.of(type), new Block.Sink() {
         @Override
-        public boolean accept(int id, String fieldName, String value) {
+        public boolean accept(Class whole, int id, Class fraction, String fieldName, String value) {
           updates.add(new Update(type, id, fieldName, value));
           if (updates.size() >= 100) {
             UpdateBatch batch = new UpdateBatch(updates);

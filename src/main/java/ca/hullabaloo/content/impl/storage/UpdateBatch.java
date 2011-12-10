@@ -1,7 +1,7 @@
 package ca.hullabaloo.content.impl.storage;
 
-import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.Update;
+import ca.hullabaloo.content.samples.Named;
 import com.google.common.collect.Iterators;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
@@ -27,7 +27,8 @@ public class UpdateBatch implements Iterable<Update> {
   public byte[] bytes() {
     Block.Writer<ByteArrayDataOutput> writer = Block.writer(ByteStreams.newDataOutput());
     for (Update u : updates) {
-      writer.write(Storage.ID.apply(u.type), u.id, u.field, u.value);
+      // TODO: this is not right.  Field type
+      writer.write(u.type, u.id, Named.class, u.field, u.value);
     }
     return writer.getOutput().toByteArray();
   }
