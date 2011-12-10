@@ -1,17 +1,21 @@
 package ca.hullabaloo.content.impl.storage;
 
-import com.google.common.collect.Interner;
+import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.SchemaVersion;
+import ca.hullabaloo.content.util.InternSet;
+import com.google.common.collect.ImmutableSet;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Set;
 
 public class StorageTypesTest {
-  @Test(invocationCount = 5)
+  @Test(invocationCount = 1)
   public void testRegister() throws Exception {
     StorageTypes s = new StorageTypes();
-    Class[] types = new Class[]{A.class, B_A.class, C_A.class};
+    Class[] types = new Class[]{A.class, B.class, C.class};
     Collections.shuffle(Arrays.asList(types));
     String message = "Order:" + Arrays.toString(types);
 
@@ -19,43 +23,64 @@ public class StorageTypesTest {
       s.register(type);
     }
 
-    int id_A = s.id(A.class);
-    int id_B = s.id(B_A.class);
-    int id_C = s.id(C_A.class);
-
-    Assert.assertFalse(id_A == id_B, message);
-    Assert.assertFalse(id_A == id_C, message);
-    Assert.assertFalse(id_B == id_C, message);
-
-    int[] expected = {id_A, id_B, id_C};
-    int[] actual = s.ids(A.class);
-    Arrays.sort(expected);
-    Arrays.sort(actual);
-    Assert.assertEquals(expected, actual, message);
-
-    Interner<String> props_B = s.properties(B_A.class);
-    Assert.assertNotNull(props_B.intern("a"), message);
-    Assert.assertNotNull(props_B.intern("b"), message);
-    Assert.assertNull(props_B.intern("c"), message);
-
-    Interner<String> props_A = s.properties(A.class);
+    InternSet<String> props_A = s.properties(A.class);
     Assert.assertNotNull(props_A.intern("a"), message);
     Assert.assertNull(props_A.intern("b"), message);
     Assert.assertNull(props_A.intern("c"), message);
+    Assert.assertNull(props_A.intern("id"), message);
+    Assert.assertEquals(s(A.class), s(s.componentsOf(A.class)));
+
+    InternSet<String> props_B = s.properties(B.class);
+    Assert.assertNull(props_B.intern("a"), message);
+    Assert.assertNotNull(props_B.intern("b"), message);
+    Assert.assertNull(props_B.intern("c"), message);
+    Assert.assertNull(props_B.intern("id"), message);
+    Assert.assertEquals(s(A.class,B.class), s(s.componentsOf(B.class)));
+
+    InternSet<String> props_C = s.properties(C.class);
+    Assert.assertNull(props_C.intern("a"), message);
+    Assert.assertNull(props_C.intern("b"), message);
+    Assert.assertNotNull(props_C.intern("c"), message);
+    Assert.assertNull(props_C.intern("id"), message);
+    Assert.assertEquals(s(A.class,C.class), s(s.componentsOf(C.class)));
+  }
+
+  private static Set<Class<?>> s(Class<?>... classes) {
+    return ImmutableSet.copyOf(classes);
+  }
+
+  private static Set<Class<?>> s(InternSet<Class<?>> classes) {
+    return ImmutableSet.copyOf(classes.iterator());
   }
 
   @SuppressWarnings({"UnusedDeclaration"})
-  static interface A {
+  @WholeType("A")
+  @SchemaVersion(1)
+  static interface A extends AX {
     String a();
   }
 
   @SuppressWarnings({"UnusedDeclaration"})
-  static interface B_A extends A {
+  @WholeType("B")
+  @SchemaVersion(1)
+  static interface B extends A {
+    String b();
+  }
+
+  static interface AX {
     String b();
   }
 
   @SuppressWarnings({"UnusedDeclaration"})
-  static interface C_A extends A {
+  @WholeType("C")
+  @SchemaVersion(1)
+  static interface C extends A {
     String c();
+  }
+
+  @SuppressWarnings({"UnusedDeclaration"})
+  @SchemaVersion(1)
+  static interface D extends B {
+    String d();
   }
 }

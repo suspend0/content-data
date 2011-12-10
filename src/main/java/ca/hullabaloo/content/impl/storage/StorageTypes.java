@@ -1,70 +1,105 @@
 package ca.hullabaloo.content.impl.storage;
 
-import ca.hullabaloo.content.api.Storage;
+import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.SchemaVersion;
 import ca.hullabaloo.content.util.ImmutableHashInterner;
-import com.google.common.collect.Interner;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.primitives.Ints;
+import ca.hullabaloo.content.util.InternSet;
+import com.google.common.collect.*;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 public class StorageTypes {
-  // TODO an immutable tree of registered would be faster and take less space
-  private ConcurrentMap<Class<?>, Integer> registered = Maps.newConcurrentMap();
-  private ConcurrentMap<Class<?>, Interner<String>> properties = Maps.newConcurrentMap();
-  private ConcurrentMap<Class<?>, int[]> subtypes = Maps.newConcurrentMap();
+  private static <E> E check(E r, Class<?> type) {
+    checkArgument(r != null, "Unknown type", type);
+    return r;
+  }
 
-  public synchronized void register(Class<?> type) {
-    checkArgument(type.isInterface());
-    int id = type.getName().hashCode();
-    checkArgument(!registered.values().contains(id));
-    checkArgument(registered.putIfAbsent(type, id) == null);
+  /**
+   * These are only the properties owned (directly declared by) the entity
+   */
+  private ConcurrentMap<Class<?>, InternSet<String>> properties = Maps.newConcurrentMap();
+  /**
+   * The key is an entity, the value is a list of entities that the entity is composed from.
+   * A type is always composed of at least itself.
+   */
+  private ConcurrentMap<Class<?>, InternSet<Class<?>>> composedOf = Maps.newConcurrentMap();
 
-    List<String> names = Lists.newArrayList();
+  public synchronized void register(final Class<?> type) {
+    checkArgument(type.isInterface(), "Entities must be interface types", type);
+    checkArgument(!type.isAnnotation(), "Entities must not be annotation types", type);
+    checkArgument(type.isAnnotationPresent(SchemaVersion.class),
+        "Entities must have a %s annotation", SchemaVersion.class.getSimpleName(), type);
+    checkArgument(type.isAnnotationPresent(WholeType.class),
+        "Entities must have a %s annotation", WholeType.class.getSimpleName(), type);
+    if (properties.containsKey(type)) {
+      return;
+    }
+
+    // Check all public methods, no matter where from
     for (Method method : type.getMethods()) {
-      if (!Storage.ID_METHOD_NAME.equals(method.getName())) {
-        names.add(method.getName());
+      if (method.getDeclaringClass() != Object.class && method.getDeclaringClass() != Annotation.class) {
+        checkArgument(method.getParameterTypes().length == 0, "only zero-argument getters are supported", method);
       }
     }
-    this.properties.put(type, ImmutableHashInterner.create(names));
 
-    int[] subs = {id};
-    for (Map.Entry<Class<?>, int[]> entry : subtypes.entrySet()) {
-      if (entry.getKey().isAssignableFrom(type)) {
-        entry.setValue(append(entry.getValue(), id(type)));
-      }
-      if (type.isAssignableFrom(entry.getKey())) {
-        subs = append(subs,id(entry.getKey()));
+    // Only directly-declared methods are considered the properties of the entity
+    List<String> properties = Lists.newArrayList();
+    for (Method method : type.getDeclaredMethods()) {
+      properties.add(method.getName());
+    }
+    this.properties.put(type, ImmutableHashInterner.copyOf(properties));
+
+    // This type is composed of all super interface which are themselves an Entity
+    Set<Class<?>> composedOf = Sets.newLinkedHashSet();
+    gatherInterfaces(composedOf, type);
+    for (Iterator<Class<?>> iterator = composedOf.iterator(); iterator.hasNext(); ) {
+      Class<?> possible = iterator.next();
+      if (possible.isAnnotationPresent(WholeType.class)) {
+        register(possible);
+      } else {
+        iterator.remove();
       }
     }
-    subtypes.put(type, subs);
+    this.composedOf.put(type, ImmutableHashInterner.copyOf(composedOf));
   }
 
-  private int[] append(int[] list, int item) {
-    if (!Ints.contains(list,item)) {
-      list = Arrays.copyOf(list, list.length + 1);
-      list[list.length-1] = item;
+  private void gatherInterfaces(Set<Class<?>> result, Class<?> iface) {
+    if (result.add(iface)) {
+      for (Class<?> t : iface.getInterfaces()) {
+        gatherInterfaces(result, t);
+      }
     }
-    return list;
   }
 
-  public Interner<String> properties(Class<?> type) {
-    return this.properties.get(type);
+  public InternSet<String> properties(Class<?> type) {
+    return check(this.properties.get(type), type);
   }
 
-  public int id(Class<?> type) {
-    // faster to recalculate, but safer to verify it's a type we know about 
-    return registered.get(type);
+  public InternSet<Class<?>> componentsOf(Class<?> type) {
+    return check(this.composedOf.get(type), type);
   }
 
-  public int[] ids(Class<?> type) {
-    return subtypes.get(type).clone();
+  /**
+   * Takes (whole-type to fields) and returns (fraction-type to fields)
+   */
+  public <T> Multimap<Class<?>, String> fractionate(Multimap<Class<T>, String> fields) {
+    // TODO: this doesn't restrict by fields
+    ImmutableMultimap.Builder<Class<?>, String> r = ImmutableMultimap.builder();
+    for (Map.Entry<Class<T>, String> source : fields.entries()) {
+      for (Map.Entry<Class<?>, InternSet<Class<?>>> target : this.composedOf.entrySet()) {
+        if (target.getValue().intern(source.getKey()) != null) {
+          r.put(target.getKey(), "*");
+        }
+      }
+    }
+    return r.build();
   }
 }

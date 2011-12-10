@@ -10,14 +10,13 @@ import com.google.common.base.Suppliers;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import com.google.common.collect.*;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.util.concurrent.SettableFuture;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -114,27 +113,12 @@ class Indexer {
   private class Worker implements Runnable {
     @Override
     public void run() {
+      // There's really no reason we need to only work one type at a time
       final ImmutableList<IndexBuild> work = getWorkForOneType();
+      final Class<?> type = work.get(0).key.type;
       if (!work.isEmpty()) {
         try {
-          final Class type = work.get(0).key.type;
-          final List<Update> updates = Lists.newArrayList();
-
-          Block.Reader reader = Block.reader(storage.data());
-          reader.read(storage.ids(type), new Block.Sink() {
-            @Override
-            public boolean accept(int id, String fieldName, String value) {
-              updates.add(new Update(type, id, fieldName, value));
-              if (updates.size() >= 100) {
-                UpdateBatch batch = new UpdateBatch(updates);
-                for (IndexBuild build : work) {
-                  build.index.update(batch);
-                }
-                updates.clear();
-              }
-              return true;
-            }
-          });
+          final List<Update> updates = scan(type, work);
 
           for (IndexBuild build : work) {
             build.index.update(new UpdateBatch(updates));
@@ -146,6 +130,27 @@ class Indexer {
           }
         }
       }
+    }
+
+    private <T> List<Update> scan(final Class<T> type, final ImmutableList<IndexBuild> work) {
+      final List<Update> updates = Lists.newArrayList();
+
+      Block.Reader reader = Block.reader(storage.data());
+      reader.read(storage.ids(Guava.multimap(type, getIndexFields(work))), new Block.Sink() {
+        @Override
+        public boolean accept(int id, String fieldName, String value) {
+          updates.add(new Update(type, id, fieldName, value));
+          if (updates.size() >= 100) {
+            UpdateBatch batch = new UpdateBatch(updates);
+            for (IndexBuild build : work) {
+              build.index.update(batch);
+            }
+            updates.clear();
+          }
+          return true;
+        }
+      });
+      return updates;
     }
 
     private ImmutableList<IndexBuild> getWorkForOneType() {
@@ -162,6 +167,14 @@ class Indexer {
           r.add(build);
           pending.remove();
         }
+      }
+      return r.build();
+    }
+
+    private Set<String> getIndexFields(ImmutableList<IndexBuild> work) {
+      ImmutableSet.Builder<String> r = ImmutableSet.builder();
+      for (IndexBuild build : work) {
+        r.add(build.key.fieldName);
       }
       return r.build();
     }

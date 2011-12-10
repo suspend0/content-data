@@ -1,6 +1,8 @@
 package ca.hullabaloo.content.impl.finder;
 
 import ca.hullabaloo.content.api.Finder;
+import ca.hullabaloo.content.api.SchemaVersion;
+import ca.hullabaloo.content.api.WholeType;
 import com.google.inject.name.Named;
 import org.testng.annotations.Test;
 
@@ -64,6 +66,8 @@ public class MvelExpressionTest {
     assertThat(ex.evaluate(b, "b", 2), is(true));
   }
 
+  @WholeType("BEAN")
+  @SchemaVersion(1)
   public interface Bean {
     public String name();
     public String value();

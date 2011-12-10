@@ -1,20 +1,23 @@
 package ca.hullabaloo.content.util;
 
+import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Interner;
+import com.google.common.collect.Iterators;
 import com.google.common.primitives.Ints;
+
+import java.util.Iterator;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * An interner implemented using an open-access hash table (linear probing)
  */
-public class ImmutableHashInterner<E> implements Interner<E> {
-  public static <E> Interner<E> create(E... items) {
-    return create(ImmutableSet.copyOf(items));
+public class ImmutableHashInterner<E> implements InternSet<E> {
+  public static <E> InternSet<E> copyOf(E... items) {
+    return copyOf(ImmutableSet.copyOf(items));
   }
 
-  public static <E> Interner<E> create(Iterable<E> items) {
+  public static <E> InternSet<E> copyOf(Iterable<E> items) {
     return new ImmutableHashInterner<E>(ImmutableSet.copyOf(items));
   }
 
@@ -35,10 +38,23 @@ public class ImmutableHashInterner<E> implements Interner<E> {
     }
   }
 
+  // silly generic array creation
+  @SuppressWarnings("unchecked")
+  @Override
+  public Iterator<E> iterator() {
+    return Iterators.filter(Iterators.forArray(data), Predicates.notNull());
+  }
+
+  public String toString() {
+    return Iterators.toString(iterator());
+  }
+  
   private final int mask;
+
   private final E[] data;
 
   private ImmutableHashInterner(ImmutableSet<E> items) {
+    checkArgument(items.size() > 0);
     int tableSize = chooseTableSize(items.size());
     Object[] data = new Object[tableSize];
     int mask = tableSize - 1;

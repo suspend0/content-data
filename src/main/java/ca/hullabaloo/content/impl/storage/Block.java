@@ -55,6 +55,10 @@ public class Block {
     }
 
     public int read(int[] type, Sink sink) {
+      // also checks NPE
+      if (type.length == 0) {
+        return 0;
+      }
       int count = 0;
       boolean more = true;
       while (more && advanceTo(type)) {
@@ -70,7 +74,7 @@ public class Block {
         switch (state) {
           case READY:
             int t = chunk.readInt();
-            if (Ints.contains(type,t)) {
+            if (Ints.contains(type, t)) {
               state = State.SET;
               return true;
             }

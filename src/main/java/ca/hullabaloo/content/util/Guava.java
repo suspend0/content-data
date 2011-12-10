@@ -3,6 +3,8 @@ package ca.hullabaloo.content.util;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
 import com.google.common.base.Throwables;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,14 +19,14 @@ public class Guava {
   /**
    * Deletes all the files within a directory. Does not delete the
    * directory itself.
-   *
+   * <p/>
    * <p>If the file argument is a symbolic link or there is a symbolic
    * link in the path leading to the directory, this method will do
    * nothing. Symbolic links within the directory are not followed.
    *
    * @param directory the directory to delete the contents of
    * @throws IllegalArgumentException if the argument is not a directory
-   * @throws java.io.IOException if an I/O error occurs
+   * @throws java.io.IOException      if an I/O error occurs
    */
   public static void deleteDirectoryContents(File directory)
       throws IOException {
@@ -45,7 +47,7 @@ public class Guava {
 
   /**
    * Deletes a file or directory and all contents recursively.
-   *
+   * <p/>
    * <p>If the file argument is a symbolic link the link will be deleted
    * but not the target of the link. If the argument is a directory,
    * symbolic links within the directory will not be followed.
@@ -75,5 +77,9 @@ public class Guava {
         }
       }
     };
+  }
+
+  public static <K, V> Multimap<K, V> multimap(K key, Iterable<V> values) {
+    return ImmutableMultimap.<K, V>builder().putAll(key, values).build();
   }
 }

@@ -1,16 +1,19 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
+import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.StorageSpi;
+import ca.hullabaloo.content.util.InternSet;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
-import com.google.common.collect.Interner;
+import com.google.common.collect.Multimap;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
 import java.util.Iterator;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -24,7 +27,7 @@ public class MemoryStorage extends BaseStorage {
 
   private final StorageSpi spi = new StorageSpi() {
     @Override
-    public Interner<String> properties(Class<?> type) {
+    public InternSet<String> properties(Class<?> type) {
       return types.properties(type);
     }
 
@@ -40,8 +43,19 @@ public class MemoryStorage extends BaseStorage {
     }
 
     @Override
-    public int[] ids(Class<?> type) {
-      return types.ids(type);
+    public <T> int[] ids(Multimap<Class<T>, String> fields) {
+      Set<Class<?>> t = types.fractionate(fields).keySet();
+      int[] r = new int[t.size()];
+      int i = 0;
+      for (Class<?> c : t) {
+        r[i++] = Storage.ID.apply(c);
+      }
+      return r;
+    }
+
+    @Override
+    public InternSet<Class<?>> componentsOf(Class<?> type) {
+      return types.componentsOf(type);
     }
   };
 

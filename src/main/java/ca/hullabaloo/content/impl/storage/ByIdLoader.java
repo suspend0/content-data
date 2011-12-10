@@ -3,8 +3,9 @@ package ca.hullabaloo.content.impl.storage;
 import ca.hullabaloo.content.api.Loader;
 import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.StorageSpi;
+import ca.hullabaloo.content.util.InternSet;
 import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Interner;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Table;
 
 import java.util.*;
@@ -23,9 +24,9 @@ public class ByIdLoader<T> implements Loader<T> {
     Arrays.sort(ids);
 
     final Table<Integer, String, Object> values = HashBasedTable.create();
-    final Interner<String> fieldNames = storage.properties(type);
+    final InternSet<String> fieldNames = storage.properties(type);
     Block.Reader reader = Block.reader(this.storage.data());
-    reader.read(storage.ids(type), new Block.Sink() {
+    reader.read(storage.ids(ImmutableMultimap.of(type, Storage.ALL_FIELDS)), new Block.Sink() {
       @Override
       public boolean accept(int id, String name, String value) {
         if (Arrays.binarySearch(ids, id) >= 0 && null != (name = fieldNames.intern(name))) {

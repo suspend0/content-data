@@ -31,6 +31,7 @@ public class FinderModuleTest {
 
   @Test
   public void interception() {
+    // TODO: why do we need storage in this test?  Maybe simpler Iterable<Bean> as adapter?
     Injector injector = Guice.createInjector(new M(), new FinderModule());
     Storage storage = injector.getInstance(Storage.class);
     Class<MvelExpressionTest.Bean> t = MvelExpressionTest.Bean.class;

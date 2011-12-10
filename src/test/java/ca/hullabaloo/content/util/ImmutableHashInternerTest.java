@@ -1,6 +1,5 @@
 package ca.hullabaloo.content.util;
 
-import com.google.common.collect.Interner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +17,7 @@ public class ImmutableHashInternerTest {
     Assert.assertNotSame(b1, b2);
     Assert.assertNotSame(c1, c2);
 
-    Interner<String> i = ImmutableHashInterner.create(a1, b1, c1);
+    InternSet<String> i = ImmutableHashInterner.copyOf(a1, b1, c1);
 
     Assert.assertSame(i.intern(a2), a1);
     Assert.assertSame(i.intern(b2), b1);
