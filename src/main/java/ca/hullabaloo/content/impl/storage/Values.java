@@ -18,8 +18,9 @@ public class Values {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String name = method.getName();
-        if(ignore.contains(name))
+        if (ignore.contains(name)) {
           return method.invoke(this);
+        }
         return values.get(name);
       }
     };
@@ -27,15 +28,22 @@ public class Values {
   }
 
   @SuppressWarnings({"unchecked"})
-  public static <T> T proxy(Class<T> type, final MethodCallback cb) {
+  public static <T> T proxy(final Class<T> type, final MethodCallback cb) {
     return (T) Proxy.newProxyInstance(type.getClassLoader(), new Class[]{type}, new InvocationHandler() {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         String name = method.getName();
         checkArgument(!Storage.ID_METHOD_NAME.equals(name));
-        if (!ignore.contains(name)) {
-          cb.called(name);
+        if (name.equals("toString")) {
+          return "Proxy{" + type.getName() + "}";
         }
+        if (name.equals("hashCode")) {
+          return System.identityHashCode(this);
+        }
+        if (name.equals("equals") && args.length == 1) {
+          return this == args[0];
+        }
+        cb.called(name);
         return null;
       }
     });

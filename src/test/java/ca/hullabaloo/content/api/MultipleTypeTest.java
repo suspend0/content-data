@@ -11,22 +11,21 @@ public class MultipleTypeTest {
   @Test
   public void query() {
     Storage s = new MemoryStorage();
-    s.register(Named.class);
     s.register(Document.class);
     s.register(Message.class);
     {
       WorkUnit b = s.begin();
       Updater<Document> u = b.updater(Document.class);
       Document $ = u.fields();
-      u.forId(1)
+      u.forId("DOC-1")
           .set($.name(), "butter")
           .set($.description(), "creamy")
           .set($.body(), "silky");
-      u.forId(3)
+      u.forId("DOC-3")
           .set($.name(), "bacon")
           .set($.description(), "yummy")
           .set($.body(), "curvy");
-      u.forId(4)
+      u.forId("DOC-4")
           .set($.name(), "lard")
           .set($.description(), "for baking");
       b.commit();
@@ -35,10 +34,10 @@ public class MultipleTypeTest {
       WorkUnit b = s.begin();
       Updater<Message> u = b.updater(Message.class);
       Message $ = u.fields();
-      u.forId(5)
+      u.forId("MESSAGE-5")
           .set($.name(), "hello")
           .set($.poster(), "tony");
-      u.forId(6)
+      u.forId("MESSAGE-6")
           .set($.name(), "whatever")
           .set($.description(), "creamy")
           .set($.poster(), "foo");

@@ -3,11 +3,13 @@ package ca.hullabaloo.content.util;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
 import com.google.common.base.Throwables;
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
+import com.google.common.collect.AbstractIterator;
+import com.google.common.collect.Maps;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -79,7 +81,30 @@ public class Guava {
     };
   }
 
-  public static <K, V> Multimap<K, V> multimap(K key, Iterable<V> values) {
-    return ImmutableMultimap.<K, V>builder().putAll(key, values).build();
+  /**
+   * The result is the length of the shorter of the two iterable.
+   */
+  public static <A, B> Iterable<Map.Entry<A, B>> zip(final Iterable<A> a, final Iterable<B> b) {
+    return new Iterable<Map.Entry<A, B>>() {
+      @Override
+      public Iterator<Map.Entry<A, B>> iterator() {
+        return join(a.iterator(),b.iterator());
+      }
+    };
+  }
+
+  /**
+   * The result is the length of the shorter of the two iterators.
+   */
+  public static <A,B> Iterator<Map.Entry<A, B>> join(final Iterator<A> a, final Iterator<B> b) {
+    return new AbstractIterator<Map.Entry<A, B>>() {
+      @Override
+      protected Map.Entry<A, B> computeNext() {
+        if(a.hasNext() && b.hasNext()) {
+          return Maps.immutableEntry(a.next(),b.next());
+        }
+        return endOfData();
+      }
+    };
   }
 }

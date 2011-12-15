@@ -9,16 +9,17 @@ abstract class BaseStorage implements Storage {
 
   protected abstract StorageSpi spi();
 
-  protected abstract StorageTypes storageTypes();
+  // TODO: guice
+  protected abstract DefaultStorageTypes storageTypes();
 
   @Override
-  public final void register(Class<?> type) {
+  public final <T extends Identified> void register(Class<T> type) {
     storageTypes().register(type);
   }
 
   @Override
   public final <T> Loader<T> loader(Class<T> resultType) {
-    return new ByIdLoader<T>(spi(), resultType);
+    return new ByIdLoader<T>(resultType, spi(), storageTypes());
   }
 
   @Override
@@ -28,7 +29,7 @@ abstract class BaseStorage implements Storage {
 
   @Override
   public final WorkUnit begin() {
-    return new WorkUnit(eventBus());
+    return new DefaultWorkUnit(eventBus(), storageTypes());
   }
 }
 

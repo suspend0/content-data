@@ -141,7 +141,6 @@ public class IntPackTest {
 
   @Test(enabled = DEBUG)
   public void decompose() {
-    Random rand = new Random();
     int i = 0;
     int v = 13665;//rand.nextInt(20000);
 

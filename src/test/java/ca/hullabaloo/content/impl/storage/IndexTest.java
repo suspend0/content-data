@@ -1,6 +1,5 @@
 package ca.hullabaloo.content.impl.storage;
 
-import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.impl.ArrayIdSet;
 import com.google.common.base.Predicates;
 import org.testng.Assert;
@@ -10,7 +9,7 @@ import java.util.Collections;
 
 public class IndexTest {
   private UpdateBatch Update(Class<?> type, int id, String field, String value) {
-    return new UpdateBatch(Collections.singletonList(new Update(type, id, field, value)));
+    return new UpdateBatch(Collections.singletonList(new UpdateRecord(type, id, type, field, value)));
   }
 
   @Test

@@ -1,7 +1,6 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
-import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.impl.ArrayIdSet;
 import ca.hullabaloo.content.impl.query.IdSets;
 import com.google.common.base.Predicate;
@@ -61,10 +60,10 @@ final class Index<T> implements Supplier<IdSet<T>> {
     //  - and matches predicate, add to id set
     //  - and not matches, remove from id set
     boolean makeDirty = false;
-    for (Update update : updates) {
-      if (this.type == update.type && this.fieldName.equals(update.field)) {
+    for (UpdateRecord update : updates) {
+      if ((this.type == update.wholeType || this.type == update.fractionType) && this.fieldName.equals(update.field)) {
         makeDirty = true;
-        if (this.predicate.apply(update.value)) {
+        if (this.predicate.apply(cast(update.value))) {
           this.adds.set(update.id);
           this.removes.clear(update.id);
         } else {
@@ -76,6 +75,10 @@ final class Index<T> implements Supplier<IdSet<T>> {
         dirty = true;
       }
     }
+  }
+
+  private T cast(Object value) {
+    return this.type.cast(value);
   }
 
   public int hashCode() {

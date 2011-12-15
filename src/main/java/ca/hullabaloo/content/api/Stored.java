@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface WholeType {
-  String value();
+public @interface Stored {
+  String key() default "__not_keyed__";
+  int schemaVersion();
 }

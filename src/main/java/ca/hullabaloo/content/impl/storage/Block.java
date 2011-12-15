@@ -1,6 +1,7 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.RuntimeIOException;
+import ca.hullabaloo.content.impl.StoredAnnotation;
 import ca.hullabaloo.content.util.See;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -38,6 +39,7 @@ public class Block {
 
     @See(ref = ca.hullabaloo.content.api.Updater.class)
     public void write(Class whole, int id, Class fraction, String field, String value) {
+      assert StoredAnnotation.getKey(whole) != null;
       try {
         out.writeByte(0);
         out.writeByte(whole.getName().hashCode());
@@ -135,6 +137,7 @@ public class Block {
       int count = 0;
       boolean more = true;
       while (more && advanceTo(resolver)) {
+        assert StoredAnnotation.getKey(resolver.whole) != null;
         more = sink.accept(resolver.whole, chunk.readInt(), resolver.fraction, chunk.readUTF(), chunk.readUTF());
         readyState();
         count++;

@@ -48,7 +48,7 @@ public class FParser {
     }
 
     public Rule Term() {
-      return FirstOf(Atom(), Parens());
+      return FirstOf(Atom(), Parentheses());
     }
 
     public Rule Atom() {
@@ -69,7 +69,7 @@ public class FParser {
       );
     }
 
-    public Rule Parens() {
+    public Rule Parentheses() {
       return Sequence('(', Expression(), ')');
     }
 

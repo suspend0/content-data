@@ -1,7 +1,5 @@
 package ca.hullabaloo.content.api;
 
-import com.google.common.base.Function;
-
 /**
  * This is a system for content storage which uses java objects as the content definition.
  * Objects are defined in a restricted forms so they can be easily mapped to key-value
@@ -40,20 +38,9 @@ import com.google.common.base.Function;
  * </ol>
  */
 public interface Storage {
-  public String ALL_FIELDS = "*";
-
-  @Deprecated
   String ID_METHOD_NAME = "id";
 
-  @Deprecated
-  public static Function<Class<?>, Integer> ID = new Function<Class<?>, Integer>() {
-    @Override
-    public Integer apply(Class<?> type) {
-      return type.getName().hashCode();
-    }
-  };
-
-  void register(Class<?> type);
+  <T extends Identified> void register(Class<T> type);
 
   <T> Loader<T> loader(Class<T> resultType);
 

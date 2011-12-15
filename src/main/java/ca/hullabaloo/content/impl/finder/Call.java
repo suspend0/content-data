@@ -3,6 +3,7 @@ package ca.hullabaloo.content.impl.finder;
 import ca.hullabaloo.content.api.IdIterator;
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.Storage;
+import ca.hullabaloo.content.impl.StoredAnnotation;
 import com.google.common.collect.Lists;
 import com.google.inject.Provider;
 
@@ -22,11 +23,12 @@ class Call {
   }
 
   public Object invoke(Object[] args) {
+    String base = StoredAnnotation.getKey(resultType) + "-";
     IdSet<?> x = storage.get().query(resultType).execute();
-    int[] ids = new int[x.size()];
+    String[] ids = new String[x.size()];
     int pos = 0;
     for (IdIterator it = x.iterator(); it.hasNext(); ) {
-      ids[pos++] = it.next();
+      ids[pos++] = base + it.next();
     }
     List<?> y = storage.get().loader(resultType).getAll(ids);
     y = Lists.newArrayList(y);

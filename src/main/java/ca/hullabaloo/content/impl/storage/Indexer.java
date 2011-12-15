@@ -2,7 +2,6 @@ package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.StorageSpi;
-import ca.hullabaloo.content.api.Update;
 import ca.hullabaloo.content.util.Guava;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
@@ -10,7 +9,10 @@ import com.google.common.base.Suppliers;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
-import com.google.common.collect.*;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.util.concurrent.SettableFuture;
 
@@ -118,7 +120,7 @@ class Indexer {
       final Class<?> type = work.get(0).key.type;
       if (!work.isEmpty()) {
         try {
-          final List<Update> updates = scan(type, work);
+          final List<UpdateRecord> updates = scan(type, work);
 
           for (IndexBuild build : work) {
             build.index.update(new UpdateBatch(updates));
@@ -132,14 +134,15 @@ class Indexer {
       }
     }
 
-    private List<Update> scan(final Class type, final ImmutableList<IndexBuild> work) {
-      final List<Update> updates = Lists.newArrayList();
+    // TODO this method is screwed up with return + batch
+    private List<UpdateRecord> scan(final Class type, final ImmutableList<IndexBuild> work) {
+      final List<UpdateRecord> updates = Lists.newArrayList();
 
       Block.Reader reader = Block.reader(storage.data());
       reader.read(ImmutableSet.of(type), new Block.Sink() {
         @Override
         public boolean accept(Class whole, int id, Class fraction, String fieldName, String value) {
-          updates.add(new Update(type, id, fieldName, value));
+          updates.add(new UpdateRecord(whole, id, fraction, fieldName, value));
           if (updates.size() >= 100) {
             UpdateBatch batch = new UpdateBatch(updates);
             for (IndexBuild build : work) {

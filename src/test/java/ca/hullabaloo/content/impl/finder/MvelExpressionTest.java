@@ -1,24 +1,24 @@
 package ca.hullabaloo.content.impl.finder;
 
 import ca.hullabaloo.content.api.Finder;
-import ca.hullabaloo.content.api.SchemaVersion;
-import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.Identified;
+import ca.hullabaloo.content.api.Stored;
 import com.google.inject.name.Named;
 import org.testng.annotations.Test;
 
 import java.util.Iterator;
-import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class MvelExpressionTest {
-  private final Bean a = new BeanImpl("a", 1, null);
-  private final Bean b = new BeanImpl("b", 2, null);
+  private final Bean a = new BeanImpl("a", 1);
+  private final Bean b = new BeanImpl("b", 2);
 
   public static interface Coffee {
     @Finder("name=:n")
     public Iterator<Bean> some(@Named(":n") String name);
+
     @Finder("name=:1")
     public Iterator<Bean> more(String name);
   }
@@ -31,6 +31,7 @@ public class MvelExpressionTest {
     assertThat(ex.evaluate(a, "b"), is(false));
     assertThat(ex.evaluate(b, "b"), is(true));
   }
+
   @Test
   public void fromMethodIndexed() throws NoSuchMethodException {
     MvelExpression<Bean> ex = DynamicFinders.createExpression(Coffee.class.getMethod("more", String.class));
@@ -66,10 +67,10 @@ public class MvelExpressionTest {
     assertThat(ex.evaluate(b, "b", 2), is(true));
   }
 
-  @WholeType("BEAN")
-  @SchemaVersion(1)
-  public interface Bean {
+  @Stored(key = "BEAN",schemaVersion = 1)
+  public interface Bean extends Identified {
     public String name();
+
     public String value();
   }
 
@@ -77,12 +78,15 @@ public class MvelExpressionTest {
   public static class BeanImpl implements Bean {
     private final String name;
     private final long value;
-    private final Map<String, Integer> counts;
 
-    public BeanImpl(String name, long value, Map<String, Integer> counts) {
+    public BeanImpl(String name, long value) {
       this.name = name.substring(0);
       this.value = value;
-      this.counts = counts;
+    }
+
+    @Override
+    public String id() {
+      return "BEAN-0";
     }
 
     @Override

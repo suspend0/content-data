@@ -37,10 +37,10 @@ public class FinderModuleTest {
     Class<MvelExpressionTest.Bean> t = MvelExpressionTest.Bean.class;
     storage.register(t);
     storage.begin()
-        .add(new Update(t, 1, "name", "bob"))
-        .add(new Update(t, 1, "value", "27"))
-        .add(new Update(t, 2, "name", "lou"))
-        .add(new Update(t, 2, "value", "23"))
+        .add(new Update("BEAN-1", "name", "bob"))
+        .add(new Update("BEAN-1", "value", "27"))
+        .add(new Update("BEAN-2", "name", "lou"))
+        .add(new Update("BEAN-2", "value", "23"))
         .commit();
 
     MyFinder a = injector.getInstance(MyFinder.class);

@@ -2,7 +2,6 @@ package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.StorageSpi;
-import ca.hullabaloo.content.util.InternSet;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
@@ -19,15 +18,10 @@ public class MemoryStorage extends BaseStorage {
   private final AtomicInteger reads = new AtomicInteger(0);
 
   private final Queue<byte[]> data = new ConcurrentLinkedQueue<byte[]>();
-  private final StorageTypes types = new StorageTypes();
+  private final DefaultStorageTypes types = new DefaultStorageTypes();
   private final EventBus events;
 
   private final StorageSpi spi = new StorageSpi() {
-    @Override
-    public InternSet<String> properties(Class<?> type) {
-      return types.properties(type);
-    }
-
     @Override
     public Iterator<byte[]> data() {
       Preconditions.checkState(reads.getAndIncrement() < maxReads, "only allowed to read %s times", maxReads);
@@ -37,11 +31,6 @@ public class MemoryStorage extends BaseStorage {
     @Override
     public <T, V> Supplier<IdSet<T>> index(Class<T> type, String fieldName, Predicate<V> predicate) {
       return indexes.getIndex(type, fieldName, predicate);
-    }
-
-    @Override
-    public InternSet<Class<?>> componentsOf(Class<?> type) {
-      return types.componentsOf(type);
     }
   };
 
@@ -74,7 +63,7 @@ public class MemoryStorage extends BaseStorage {
   }
 
   @Override
-  protected StorageTypes storageTypes() {
+  protected DefaultStorageTypes storageTypes() {
     return this.types;
   }
 }

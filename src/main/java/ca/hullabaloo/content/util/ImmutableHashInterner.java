@@ -78,7 +78,7 @@ public class ImmutableHashInterner<E> implements InternSet<E> {
       return Integer.highestOneBit(setSize) << 2;
     }
 
-    // The table can't be completely full or we'll get infinite reprobes
+    // The table can't be completely full or we'll get infinite re-probe
     checkArgument(setSize < Ints.MAX_POWER_OF_TWO, "collection too large");
     return Ints.MAX_POWER_OF_TWO;
   }

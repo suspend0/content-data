@@ -21,7 +21,7 @@ public class FParserTest {
   }
 
   @Test
-  public void simpleWithParens() {
+  public void simpleWithParentheses() {
     Node n = new FParser().parse("(foo=:1)");
     assertThat(n.params(), equalTo(setOf(":1")));
   }

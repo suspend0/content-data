@@ -3,7 +3,6 @@ package ca.hullabaloo.content.impl.storage;
 import ca.hullabaloo.content.RuntimeIOException;
 import ca.hullabaloo.content.api.IdSet;
 import ca.hullabaloo.content.api.StorageSpi;
-import ca.hullabaloo.content.util.InternSet;
 import ca.hullabaloo.content.util.SizeUnit;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -21,7 +20,7 @@ import java.nio.ByteBuffer;
 import java.util.Iterator;
 
 public class HawtStorage extends BaseStorage {
-  private final StorageTypes types = new StorageTypes();
+  private final DefaultStorageTypes types = new DefaultStorageTypes();
   private final StorageSpi spi;
   private final EventBus eventBus;
 
@@ -46,12 +45,12 @@ public class HawtStorage extends BaseStorage {
   }
 
   @Override
-  protected StorageTypes storageTypes() {
+  protected DefaultStorageTypes storageTypes() {
     return types;
   }
 
   private static class HawtStorageSpi implements StorageSpi {
-    private final StorageTypes types;
+    private final DefaultStorageTypes types;
     private final Journal data;
 
     private final Function<Location, byte[]> reader = new Function<Location, byte[]>() {
@@ -71,7 +70,7 @@ public class HawtStorage extends BaseStorage {
       }
     };
 
-    public HawtStorageSpi(StorageTypes types, File directory) throws IOException {
+    public HawtStorageSpi(DefaultStorageTypes types, File directory) throws IOException {
       this.types = types;
       Journal journal = new Journal();
       journal.setDirectory(directory);
@@ -81,11 +80,6 @@ public class HawtStorage extends BaseStorage {
       journal.setMaxWriteBatchSize(Ints.checkedCast(SizeUnit.KB.toBytes(10)));
       journal.open();
       this.data = journal;
-    }
-
-    @Override
-    public InternSet<String> properties(Class<?> type) {
-      return types.properties(type);
     }
 
     @Override
@@ -106,11 +100,6 @@ public class HawtStorage extends BaseStorage {
       } catch (IOException e) {
         throw new RuntimeIOException(e);
       }
-    }
-
-    @Override
-    public InternSet<Class<?>> componentsOf(Class<?> type){
-      return types.componentsOf(type);
     }
   }
 }

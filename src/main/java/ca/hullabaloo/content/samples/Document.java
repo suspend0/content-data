@@ -1,10 +1,8 @@
 package ca.hullabaloo.content.samples;
 
-import ca.hullabaloo.content.api.SchemaVersion;
-import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.Stored;
 
-@WholeType("DOC")
-@SchemaVersion(1)
+@Stored(key = "DOC", schemaVersion = 1)
 public interface Document extends Named {
   String body();
 }

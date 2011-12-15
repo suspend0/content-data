@@ -1,10 +1,8 @@
 package ca.hullabaloo.content.samples;
 
-import ca.hullabaloo.content.api.SchemaVersion;
-import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.Stored;
 
-@WholeType("MESSAGE")
-@SchemaVersion(1)
+@Stored(key = "MESSAGE", schemaVersion = 1)
 public interface Message extends Named {
   public String poster();
 }

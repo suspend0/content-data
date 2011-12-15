@@ -1,12 +1,13 @@
 package ca.hullabaloo.content.samples;
 
-import ca.hullabaloo.content.api.SchemaVersion;
-import ca.hullabaloo.content.api.WholeType;
+import ca.hullabaloo.content.api.Identified;
+import ca.hullabaloo.content.api.Stored;
 
-@WholeType("N")
-@SchemaVersion(1)
-public interface Named {
-  public int id();
+@Stored(schemaVersion = 1)
+public interface Named extends Identified {
+  public String id();
+
   public String name();
+
   public String description();
 }
