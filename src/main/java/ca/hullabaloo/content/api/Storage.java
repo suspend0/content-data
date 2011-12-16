@@ -29,7 +29,7 @@ package ca.hullabaloo.content.api;
  * grained.</li>
  * <li>Fraction Type: These are portions of a whole type which are stored separately.</li>
  * <li>View Type: This is a type which serves as a query result.  These types are
- * not stored in the system.  Of course, you can query for whole or fraction types.</li>
+ * not stored in the system.  Of course, you can also query for whole or fraction types.</li>
  * </ol>
  * Additional restrictions
  * <ol>

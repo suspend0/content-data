@@ -63,7 +63,7 @@ final class Index<T> implements Supplier<IdSet<T>> {
     for (UpdateRecord update : updates) {
       if ((this.type == update.wholeType || this.type == update.fractionType) && this.fieldName.equals(update.field)) {
         makeDirty = true;
-        if (this.predicate.apply(cast(update.value))) {
+        if (this.predicate.apply(update.value)) {
           this.adds.set(update.id);
           this.removes.clear(update.id);
         } else {
@@ -75,10 +75,6 @@ final class Index<T> implements Supplier<IdSet<T>> {
         dirty = true;
       }
     }
-  }
-
-  private T cast(Object value) {
-    return this.type.cast(value);
   }
 
   public int hashCode() {
