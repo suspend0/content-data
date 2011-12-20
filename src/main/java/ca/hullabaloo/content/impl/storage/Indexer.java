@@ -1,7 +1,7 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
-import ca.hullabaloo.content.api.StorageSpi;
+import ca.hullabaloo.content.api.LogStorageSpi;
 import ca.hullabaloo.content.util.Guava;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
@@ -28,9 +28,9 @@ class Indexer {
   private final ConcurrentLinkedQueue<IndexBuild> pendingBuilds = new ConcurrentLinkedQueue<IndexBuild>();
   private final ExecutorService collectionThread = Executors.newSingleThreadExecutor();
   private final Cache<Key, Supplier<IdSet>> indexes;
-  private final StorageSpi storage;
+  private final LogStorageSpi storage;
 
-  public Indexer(StorageSpi storage) {
+  public Indexer(LogStorageSpi storage) {
     this.storage = storage;
     indexes = CacheBuilder.newBuilder()
         .concurrencyLevel(1)

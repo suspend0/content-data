@@ -1,7 +1,7 @@
 package ca.hullabaloo.content.impl.storage;
 
 import ca.hullabaloo.content.api.IdSet;
-import ca.hullabaloo.content.api.StorageSpi;
+import ca.hullabaloo.content.api.LogStorageSpi;
 import ca.hullabaloo.content.impl.ArrayIdSet;
 import com.google.common.base.Predicates;
 import com.google.common.base.Supplier;
@@ -20,7 +20,7 @@ public class IndexerTest {
     writer.write(String.class, 1, String.class, "bar", "1");
     byte[] data = writer.getOutput().toByteArray();
 
-    StorageSpi spi = Mockito.mock(StorageSpi.class);
+    LogStorageSpi spi = Mockito.mock(LogStorageSpi.class);
     Mockito.when(spi.data()).thenReturn(Iterators.singletonIterator(data));
 
     Indexer indexer = new Indexer(spi);
