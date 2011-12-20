@@ -1,6 +1,6 @@
 package ca.hullabaloo.content.api;
 
-import ca.hullabaloo.content.impl.storage.MemoryStorage;
+import ca.hullabaloo.content.impl.storage.TestStorage;
 import ca.hullabaloo.content.samples.Document;
 import ca.hullabaloo.content.samples.Message;
 import ca.hullabaloo.content.samples.Named;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class MultipleTypeTest {
   @Test
   public void query() {
-    Storage s = new MemoryStorage();
+    Storage s = TestStorage.memory();
     s.register(Document.class);
     s.register(Message.class);
     {

@@ -1,6 +1,6 @@
 package ca.hullabaloo.content.api;
 
-import ca.hullabaloo.content.impl.storage.MemoryStorage;
+import ca.hullabaloo.content.impl.storage.TestStorage;
 import ca.hullabaloo.content.samples.Named;
 import ca.hullabaloo.content.samples.Thing;
 import org.testng.Assert;
@@ -11,7 +11,7 @@ import static ca.hullabaloo.content.samples.Thing.ID.id;
 public class QueryTest {
   @Test
   public void query() {
-    Storage s = new MemoryStorage();
+    Storage s = TestStorage.memory();
     s.register(Thing.class);
 
     WorkUnit b = s.begin();

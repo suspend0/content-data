@@ -4,13 +4,10 @@ import ca.hullabaloo.content.api.Finder;
 import ca.hullabaloo.content.api.Finders;
 import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.api.Update;
-import ca.hullabaloo.content.impl.storage.MemoryStorage;
+import ca.hullabaloo.content.impl.storage.TestStorage;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Scopes;
+import com.google.inject.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,7 +22,12 @@ public class FinderModuleTest {
     @Override
     protected void configure() {
       DynamicFinders.add(binder(), MyFinder.class);
-      bind(Storage.class).to(MemoryStorage.class).in(Scopes.SINGLETON);
+    }
+    
+    @Singleton
+    @Provides
+    public Storage provideStorage() {
+      return TestStorage.memory();
     }
   }
 

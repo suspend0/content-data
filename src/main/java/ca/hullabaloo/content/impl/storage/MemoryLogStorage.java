@@ -9,8 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MemoryStorage extends BaseStorage {
-  private static class MemoryStorageSpi implements LogStorageSpi {
+class MemoryLogStorage implements LogStorageSpi {
     private volatile int maxReads = Integer.MAX_VALUE;
     private final AtomicInteger reads = new AtomicInteger(0);
     private final Queue<byte[]> data = new ConcurrentLinkedQueue<byte[]>();
@@ -25,29 +24,9 @@ public class MemoryStorage extends BaseStorage {
     public void updates(UpdateBatch updates) {
       this.data.add(updates.bytes());
     }
-  }
 
-  private static ThreadLocal<MemoryStorageSpi> hack = new ThreadLocal<MemoryStorageSpi>();
-  private static MemoryStorageSpi superHack(boolean c) {
-    if(c) {
-      hack.set(new MemoryStorageSpi());
-      return hack.get();
-    } else {
-      MemoryStorageSpi r = hack.get();
-      hack.remove();
-      return r;
-    }
-  }
-
-  private final MemoryStorageSpi spi;
-
-  public MemoryStorage() {
-    super(superHack(true));
-    this.spi = superHack(false);
-  }
-
-  public MemoryStorage maxReads(int max) {
-    this.spi.maxReads = max;
+  public MemoryLogStorage maxReads(int max) {
+    this.maxReads = max;
     return this;
   }
 }

@@ -1,6 +1,6 @@
 package ca.hullabaloo.content.api;
 
-import ca.hullabaloo.content.impl.storage.MemoryStorage;
+import ca.hullabaloo.content.impl.storage.TestStorage;
 import ca.hullabaloo.content.samples.Named;
 import ca.hullabaloo.content.samples.Thing;
 import org.testng.Assert;
@@ -12,7 +12,7 @@ public class IndexTest {
   @Test
   public void query() {
     // we update & run the query again, but we expect the index layer to catch it
-    Storage s = new MemoryStorage().maxReads(1);
+    Storage s = TestStorage.memoryWithMaxReads(1);
     s.register(Thing.class);
     {
       WorkUnit b = s.begin();

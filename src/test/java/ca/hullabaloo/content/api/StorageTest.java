@@ -1,7 +1,6 @@
 package ca.hullabaloo.content.api;
 
-import ca.hullabaloo.content.impl.storage.HawtStorage;
-import ca.hullabaloo.content.impl.storage.MemoryStorage;
+import ca.hullabaloo.content.impl.storage.TestStorage;
 import ca.hullabaloo.content.util.Guava;
 import com.google.common.io.Files;
 import org.testng.annotations.AfterSuite;
@@ -20,8 +19,8 @@ public class StorageTest {
     File dir = Files.createTempDir();
     temps.add(dir);
     return new Object[][]{
-        {new MemoryStorage()},
-        {new HawtStorage(dir)}
+        {TestStorage.memory()},
+        {TestStorage.hawt(dir)}
     };
   }
 
