@@ -8,12 +8,15 @@ import com.google.common.eventbus.EventBus;
 
 import java.util.Iterator;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 class BaseStorage implements Storage {
   private final EventBus eventBus = new EventBus();
-  private final DefaultStorageTypes storageTypes = new DefaultStorageTypes();
   private final StorageSpi spi;
+  private StorageTypes storageTypes;
 
-  protected BaseStorage(final LogStorageSpi log) {
+  protected BaseStorage(StorageTypes types, final LogStorageSpi log, final ObjectStorageSpi objects) {
+    this.storageTypes = types;
     final Indexer indexes = new Indexer(log);
     this.spi = new StorageSpi() {
       @Override
@@ -26,13 +29,15 @@ class BaseStorage implements Storage {
         return indexes.getIndex(type, fieldName, predicate);
       }
     };
-    eventBus.register(log);
-    eventBus.register(indexes);
+    eventBus.register(checkNotNull(log, LogStorageSpi.class.getSimpleName()));
+    eventBus.register(checkNotNull(objects, ObjectStorageSpi.class.getSimpleName()));
+    eventBus.register(checkNotNull(indexes, Indexer.class.getSimpleName()));
   }
 
+  // TODO: deprecated; should be injected into DefaultStorageTypes
   @Override
   public final <T extends Identified> void register(Class<T> type) {
-    storageTypes.register(type);
+    ((DefaultStorageTypes) storageTypes).register(type);
   }
 
   @Override

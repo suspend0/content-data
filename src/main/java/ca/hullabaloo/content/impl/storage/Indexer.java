@@ -18,7 +18,6 @@ import com.google.common.util.concurrent.SettableFuture;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -83,6 +82,41 @@ class Indexer {
     }
   }
 
+  private class BuildList {
+    private final ImmutableList<IndexBuild> builds;
+
+    public BuildList(ImmutableList<IndexBuild> work) {
+      this.builds = work;
+    }
+
+    public void accept(List<UpdateRecord> updates) {
+      UpdateBatch batch = new UpdateBatch(updates);
+      for (IndexBuild build : builds) {
+        build.index.update(batch);
+      }
+    }
+
+    public boolean hasWork() {
+      return !this.builds.isEmpty();
+    }
+
+    public Class getType() {
+      return this.builds.get(0).key.type;
+    }
+
+    public void complete() {
+      for (IndexBuild build : builds) {
+        build.complete();
+      }
+    }
+
+    public void error(Exception e) {
+      for (IndexBuild build : builds) {
+        build.error(e);
+      }
+    }
+  }
+
   // Index will enforce its type contract internally
   @SuppressWarnings("unchecked")
   private class IndexBuild implements Supplier<Future<Index>> {
@@ -116,26 +150,19 @@ class Indexer {
     @Override
     public void run() {
       // There's really no reason we need to only work one type at a time
-      final ImmutableList<IndexBuild> work = getWorkForOneType();
-      final Class<?> type = work.get(0).key.type;
-      if (!work.isEmpty()) {
+      final BuildList work = getWorkForOneType();
+      if (work.hasWork()) {
+        final Class<?> type = work.getType();
         try {
-          final List<UpdateRecord> updates = scan(type, work);
-
-          for (IndexBuild build : work) {
-            build.index.update(new UpdateBatch(updates));
-            build.complete();
-          }
+          scan(type, work);
+          work.complete();
         } catch (Exception e) {
-          for (IndexBuild build : work) {
-            build.error(e);
-          }
+          work.error(e);
         }
       }
     }
 
-    // TODO this method is screwed up with return + batch
-    private List<UpdateRecord> scan(final Class type, final ImmutableList<IndexBuild> work) {
+    private void scan(final Class type, final BuildList work) {
       final List<UpdateRecord> updates = Lists.newArrayList();
 
       Block.Reader reader = Block.reader(storage.data());
@@ -144,23 +171,20 @@ class Indexer {
         public boolean accept(Class whole, int id, Class fraction, String fieldName, String value) {
           updates.add(new UpdateRecord(whole, id, fraction, fieldName, value));
           if (updates.size() >= 100) {
-            UpdateBatch batch = new UpdateBatch(updates);
-            for (IndexBuild build : work) {
-              build.index.update(batch);
-            }
+            work.accept(updates);
             updates.clear();
           }
           return true;
         }
       });
-      return updates;
+      work.accept(updates);
     }
 
-    private ImmutableList<IndexBuild> getWorkForOneType() {
+    private BuildList getWorkForOneType() {
       // Iterate+remove works b/c we're the only ones to remove from this queue
       IndexBuild first = pendingBuilds.poll();
       if (first == null) {
-        return ImmutableList.of();
+        return new BuildList(ImmutableList.<IndexBuild>of());
       }
       ImmutableList.Builder<IndexBuild> r = ImmutableList.builder();
       r.add(first);
@@ -171,15 +195,7 @@ class Indexer {
           pending.remove();
         }
       }
-      return r.build();
-    }
-
-    private Set<String> getIndexFields(ImmutableList<IndexBuild> work) {
-      ImmutableSet.Builder<String> r = ImmutableSet.builder();
-      for (IndexBuild build : work) {
-        r.add(build.key.fieldName);
-      }
-      return r.build();
+      return new BuildList(r.build());
     }
   }
 

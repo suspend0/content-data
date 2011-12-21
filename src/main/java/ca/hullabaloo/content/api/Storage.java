@@ -40,6 +40,7 @@ package ca.hullabaloo.content.api;
 public interface Storage {
   String ID_METHOD_NAME = "id";
 
+  @Deprecated
   <T extends Identified> void register(Class<T> type);
 
   <T> Loader<T> loader(Class<T> resultType);
