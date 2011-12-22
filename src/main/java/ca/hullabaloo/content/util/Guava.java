@@ -88,7 +88,7 @@ public class Guava {
     return new Iterable<Map.Entry<A, B>>() {
       @Override
       public Iterator<Map.Entry<A, B>> iterator() {
-        return join(a.iterator(),b.iterator());
+        return zip(a.iterator(), b.iterator());
       }
     };
   }
@@ -96,12 +96,12 @@ public class Guava {
   /**
    * The result is the length of the shorter of the two iterators.
    */
-  public static <A,B> Iterator<Map.Entry<A, B>> join(final Iterator<A> a, final Iterator<B> b) {
+  public static <A, B> Iterator<Map.Entry<A, B>> zip(final Iterator<A> a, final Iterator<B> b) {
     return new AbstractIterator<Map.Entry<A, B>>() {
       @Override
       protected Map.Entry<A, B> computeNext() {
-        if(a.hasNext() && b.hasNext()) {
-          return Maps.immutableEntry(a.next(),b.next());
+        if (a.hasNext() && b.hasNext()) {
+          return Maps.immutableEntry(a.next(), b.next());
         }
         return endOfData();
       }

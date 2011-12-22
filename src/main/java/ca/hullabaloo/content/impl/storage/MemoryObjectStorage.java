@@ -1,17 +1,19 @@
 package ca.hullabaloo.content.impl.storage;
 
+import ca.hullabaloo.content.api.Identified;
 import ca.hullabaloo.content.api.ObjectStorageSpi;
 import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.impl.Id;
 import ca.hullabaloo.content.util.Guava;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
 import com.google.common.collect.*;
 import com.google.common.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
-
-import static com.google.common.base.Preconditions.checkArgument;
 
 public class MemoryObjectStorage implements ObjectStorageSpi {
   private final StorageTypes types;
@@ -22,23 +24,30 @@ public class MemoryObjectStorage implements ObjectStorageSpi {
   }
 
   @Override
-  public <V> List<V> get(Class<V> resultType, List<String> keys) {
+  public <V extends Identified> List<V> get(Class<V> resultType, List<String> keys) {
     List<V> results = Lists.newArrayList();
 
-    ImmutableSet<Class> types = ImmutableSet.copyOf(this.types.properties(resultType).values());
-    checkArgument(!types.isEmpty(), "unknown stored type", resultType);
+    Cache<Class, ImmutableSet<Class>> typeCache = CacheBuilder.newBuilder().concurrencyLevel(1).build(
+        new CacheLoader<Class, ImmutableSet<Class>>() {
+          @Override
+          public ImmutableSet<Class> load(Class key) throws Exception {
+            return ImmutableSet.copyOf(MemoryObjectStorage.this.types.properties(key).values());
+          }
+        });
+
     List<Id> ids = this.types.ids(keys);
+    for (Map.Entry<String, Id> e : Guava.zip(keys, ids)) {
+      Id id = e.getValue();
 
-    for (Map.Entry<Id, String> e : Guava.zip(ids, keys)) {
       ImmutableMap.Builder<String, Object> c = ImmutableMap.builder();
-      c.put(Storage.ID_METHOD_NAME, e.getValue());
+      c.put(Storage.ID_METHOD_NAME, e.getKey());
 
-      for (Class type : types) {
+      for (Class type : typeCache.getUnchecked(id.type)) {
         ById a = data.byType.get(type);
         if (a == null) {
           continue;
         }
-        ByField b = a.byId.get(e.getKey());
+        ByField b = a.byId.get(id);
         if (b == null) {
           continue;
         }
