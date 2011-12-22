@@ -7,13 +7,14 @@ import com.google.common.base.Supplier;
 import com.google.common.eventbus.EventBus;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 class BaseStorage implements Storage {
   private final EventBus eventBus = new EventBus();
   private final StorageSpi spi;
-  private StorageTypes storageTypes;
+  private final StorageTypes storageTypes;
 
   protected BaseStorage(StorageTypes types, final LogStorageSpi log, final ObjectStorageSpi objects) {
     this.storageTypes = types;
@@ -27,6 +28,11 @@ class BaseStorage implements Storage {
       @Override
       public <T, V> Supplier<IdSet<T>> index(Class<T> type, String fieldName, Predicate<V> predicate) {
         return indexes.getIndex(type, fieldName, predicate);
+      }
+
+      @Override
+      public <V extends Identified> List<V> get(Class<V> type, List<String> keys) {
+        return objects.get(type, keys);
       }
     };
     eventBus.register(checkNotNull(log, LogStorageSpi.class.getSimpleName()));

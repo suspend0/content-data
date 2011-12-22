@@ -5,9 +5,7 @@ import ca.hullabaloo.content.api.ObjectStorageSpi;
 import ca.hullabaloo.content.api.Storage;
 import ca.hullabaloo.content.impl.Id;
 import ca.hullabaloo.content.util.Guava;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
+import com.google.common.base.Function;
 import com.google.common.collect.*;
 import com.google.common.eventbus.Subscribe;
 
@@ -27,13 +25,7 @@ public class MemoryObjectStorage implements ObjectStorageSpi {
   public <V extends Identified> List<V> get(Class<V> resultType, List<String> keys) {
     List<V> results = Lists.newArrayList();
 
-    Cache<Class, ImmutableSet<Class>> typeCache = CacheBuilder.newBuilder().concurrencyLevel(1).build(
-        new CacheLoader<Class, ImmutableSet<Class>>() {
-          @Override
-          public ImmutableSet<Class> load(Class key) throws Exception {
-            return ImmutableSet.copyOf(MemoryObjectStorage.this.types.properties(key).values());
-          }
-        });
+    Function<Class, ImmutableSet<Class>> compositeTypes = new CompositeTypeLookup();
 
     List<Id> ids = this.types.ids(keys);
     for (Map.Entry<String, Id> e : Guava.zip(keys, ids)) {
@@ -42,7 +34,7 @@ public class MemoryObjectStorage implements ObjectStorageSpi {
       ImmutableMap.Builder<String, Object> c = ImmutableMap.builder();
       c.put(Storage.ID_METHOD_NAME, e.getKey());
 
-      for (Class type : typeCache.getUnchecked(id.type)) {
+      for (Class type : compositeTypes.apply(id.type)) {
         ById a = data.byType.get(type);
         if (a == null) {
           continue;
@@ -70,6 +62,21 @@ public class MemoryObjectStorage implements ObjectStorageSpi {
       ById a = data.getOrCreate(update.fractionType);
       ByField b = a.getOrCreate(new Id(update.wholeType, update.id));
       b.byField.put(update.field, update.value);
+    }
+  }
+  
+  private class CompositeTypeLookup implements Function<Class,ImmutableSet<Class>>{
+    private Class prevInput = null;
+    private ImmutableSet<Class> prevResult = null;
+
+    @Override
+    public ImmutableSet<Class> apply(Class input) {
+      if (input == prevInput) {
+        return prevResult;
+      }
+
+      prevInput = input;
+      return prevResult = ImmutableSet.copyOf(MemoryObjectStorage.this.types.properties(input).values());
     }
   }
 
